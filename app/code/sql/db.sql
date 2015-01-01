@@ -159,3 +159,28 @@ CREATE TABLE IF NOT EXISTS `wpr` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 SET FOREIGN_KEY_CHECKS=1;
+
+
+
+--
+-- Table structure for table `config`
+--
+
+CREATE TABLE IF NOT EXISTS `config` (
+`id` int(12) NOT NULL,
+  `path` varchar(512) NOT NULL,
+  `value` varchar(1024) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `config`
+--
+
+INSERT INTO `config` (`id`, `path`, `value`) VALUES
+(1, 'compressed_js_file', ''),
+(2, 'compressed_css_file', ''),
+(3, 'site_title', 'Slim MVC Framework'),
+(4, 'site_meta_description', 'Slim MVC Framework'),
+(4, 'site_meta_keywords', 'Slim MVC Framework'),
+(5, 'js_compress', '0'),
+(6, 'css_compress', '0');

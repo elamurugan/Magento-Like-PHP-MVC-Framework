@@ -1,6 +1,0 @@
-
-This is Sample employee management 
-
-SELECT * FROM table t
-JOIN locations l ON FIND_IN_SET(t.e_ID, l.city) > 0
-WHERE l.e_ID = ?

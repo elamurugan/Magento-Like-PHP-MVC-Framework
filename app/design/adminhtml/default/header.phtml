@@ -1,0 +1,35 @@
+<?php
+// d($params);
+// d($module);
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo $obj->getPageTitle(); ?></title>
+		<meta name="keywords" content="<?php echo $obj->getPageMetaKeywords(); ?>">
+		<meta name="description" content="<?php echo $obj->getPageMetadescription(); ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script type="text/javascript">var  _BASEURL ="<?php echo _BASEURL ?>" </script>
+<?php echo $obj->renderCss(); ?>
+<?php echo $obj->renderJs(); ?>		
+    </head>  
+
+    <body class="<?php echo $obj->getBodyClass(); ?>">
+
+        <div class="wrapper">
+            <div class="page">
+				<div role="navigation" class="header navbar navbar-inverse navbar-fixed-top">
+					  <div class="container">
+						<div class="navbar-header">
+						  <a href="<?php echo _BASEURL ?>" class="navbar-brand"><?php echo $obj->getSiteTitle(); ?></a>
+						</div>
+						<div class="collapse navbar-collapse">
+						  <ul class="nav navbar-nav">
+							<li class="active"><a href="<?php echo _BASEURL ?>">Admin Home</a></li>
+						  </ul>
+						</div>
+					  </div>
+				</div> 
+				<div class="body ">

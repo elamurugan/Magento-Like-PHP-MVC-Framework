@@ -8,14 +8,29 @@ class PageController extends Template {
 		
     } 
 	
-	public function injdexAction(){	
-		global $obj,$_url_params,$_statues,$_priority; 
-		$model = $_url_params['config']['model'];
-		$db = new $model();
-		
-		$this->render_full("login",array());
+	public function indexAction(){	
+		global $obj,$modelObj,$_app_params,$_statues,$_priority; 
+		$this->setPageTitle("Home");
+		$this->render("index",array());
 	}
 	
+	public function aboutAction(){	
+		global $obj,$modelObj,$_app_params,$_statues,$_priority; 
+		$this->setPageTitle("About Us"); 
+		$this->render("about",array());
+	}
 	
+	public function contactAction(){	
+		global $obj,$modelObj,$_app_params,$_statues,$_priority; 
+		parent::addJs("js/contacts.js");	
+		// $modelObj->getUsers();
+		$this->setPageTitle("Contact Us");
+		$this->render("contact",array());
+	}
+	
+	public function clearcacheAction(){	
+		$this->clearCssJsCache();
+		$this->redirect('page/index');
+	}
 	
 }

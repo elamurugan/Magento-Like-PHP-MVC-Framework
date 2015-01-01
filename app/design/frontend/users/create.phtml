@@ -1,0 +1,39 @@
+<div class="signup_form">
+															
+	<div class="register form-signin" id="reg_form">
+		<form id="submit_form" action="<?php echo _BASEURL ?>users/create/" name="signup" method="post" enctype="multipart/form-data">
+			<ul class="sign">
+				<li class="signup_item">
+					<label for="first_name">Name</label>
+					<input class="form-control required"  type="text" name="name" id="first_name" placeholder="enter your first name..."/>
+					<span class="spanclass" id="fnameinfo">Please fill this field</span>
+				</li>
+				
+				<li class="signup_item">
+					<label for="user_name">Username</label>
+					<input class="form-control required"  type="text" name="user_name" id="user_name" placeholder="Choose a username..."/>
+					<span class="spanclass" id="unameinfo">Please fill this field</span>
+				</li>
+				<li class="signup_item">
+					<label for="email">Email</label>
+					<input class="form-control required email"  type="text" name="email" id="email" placeholder="enter your email..."/>
+					<span class="spanclass" id="emailinfo">Please fill this field</span>
+				</li>
+				<li class="signup_item">
+					<label for="password">Password</label>
+					<input class="form-control required"  minlength="6" type="password" name="password" id="password" placeholder="Choose a password..."/>
+					<span class="spanclass" id="pswdinfo">Please fill this field</span>
+				</li>
+				
+				<li class="signup_item">
+					<label for="password">Photo</label>
+					<input class="form-control required"  minlength="6" type="file" name="photo" id="photo"/>
+				</li>
+				
+			</ul>
+			
+			<input class="reg_submit btn btn-info btn-icon" type="submit" value="Register"/>
+																			
+		</form> 
+	</div>
+</div>

@@ -2,9 +2,7 @@
 class Error extends Template {
     var $array = array();
 	
-
-    public function error404Action($_app_params) {
-    	$this->render("error_404",array('result' => $_app_params));
-    }
-	
+	public static function exception($_class) {
+		die($_class." or configuration not loaded properly");
+	}
 }

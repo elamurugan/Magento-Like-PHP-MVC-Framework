@@ -2,41 +2,37 @@
 
 class AdminController extends Template {
 
-    var $array = array();
-	
+	public $model = false; 
 	public function AdminController() {
-		
+		global $app,$_app_params,$modelObj;
+		$this->model = $modelObj;
     } 
 	
 	public function dashboardAction($_app_params) {
-		global $obj,$modelObj,$_app_params,$_statues,$_priority;  
+		global $app; 
         $this->setPageTitle("Dashboard");
-		if(!isset($_SESSION['emp_name'])){ 
-		   $this->redirect('admin/login');
+		if(!$this->model->isUserLoggedIn()){ 
+		   $this->redirect(_ADMIN_ROUTE_URL.'/admin/login');
 	    }
 		$this->render("dashboard",array());		
     } 
 	
-	public function loginAction(){
-		global $obj,$modelObj,$_app_params,$_statues,$_priority;  
-		if(isset($_SESSION['emp_name'] )){
-			$this->redirect('admin/admin/dashboard');
+	public function loginAction($_app_params){
+		global $app;  
+		if($this->model->isUserLoggedIn()){
+			$this->redirect(_ADMIN_ROUTE_URL.'/admin/dashboard');
 			return;
 		}
-		elseif(isset($_POST) && isset($_POST['email']) ){
-			$email 	   = $_POST['email'];
-			$password  = md5($_POST['password']);
-			$qry       = "select * from `users`  where emp_email='$email' and password='$password' ";
-			$response  = $modelObj->fetch_assoc($qry);
-		   
+		elseif(isset($_POST)){
+			$postParams = $this->getParamsByType('post'); 
+			$response  = $this->model->login($postParams); 
 			if($response && count($response)){
-				$_SESSION['emp_name'] = $response[0]['emp_name'] ;
-				$_SESSION['emp_id']   = $response[0]['emp_id'];
-				$_SESSION['suc_message'] = "You logged in successfully";
-				$this->redirect('admin/admin/dashboard');
+				$this->setSession("user",$response) ;
+				$this->setSession('suc_message' ,"You logged in successfully");
+				$this->redirect(_ADMIN_ROUTE_URL.'/admin/dashboard');
 			}
 			else{
-				$_SESSION['err_message'] = 'Wrong user/password';						
+				$this->setSession('err_message' , 'Wrong user/password');						
 				$this->redirect('');
 			}
 			return;
@@ -44,10 +40,9 @@ class AdminController extends Template {
 		$this->render("login",array());
 	} 
  
-	public function logoutAction(){
-		unset($_SESSION['emp_name']);
-		unset($_SESSION);
-		$this->redirect("");
+	public function logoutAction($_app_params){
+		$this->resetApp();
+		$this->redirect(_ADMIN_ROUTE_URL."/");
 	}
 	
 }

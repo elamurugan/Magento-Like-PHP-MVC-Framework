@@ -3,7 +3,7 @@
 		
 		<div class='login_box fl cb form-signin'>
 			<p class="signin">EMS - Please Sign In</p> 
-			<form id="login_form" class="" action="<?php echo _BASEURL ?>users/login/" method="post" enctype="multipart/form-data">
+			<form id="login_form" class="" action="<?php echo $app->getBaseUrl(); ?>users/login/" method="post" enctype="multipart/form-data">
 				<div class="input-group">
 					<span class="input-group-addon  input_img_icon"><i class="icon-envelope"></i></span>
 					<input type="email" class="form-control" required="" placeholder="Email Address" name="email" />
@@ -25,7 +25,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
 						<h4 class="modal-title">Reset Password</h4>
 					</div>
-					<form id="frgtpswd_form" action="" method="post">
+					<form id="frgtpswd_form" action="<?php echo $app->getBaseUrl(); ?>users/forgotpassword/" method="post">
 						<div class="modal-body">
 							<div class="form-group">
 								<label for="theEmail">Email Address</label>

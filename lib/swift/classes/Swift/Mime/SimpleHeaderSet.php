@@ -65,19 +65,21 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     public function addMailboxHeader($name, $addresses = null)
     {
         $this->_storeHeader($name,
-        $this->_factory->createMailboxHeader($name, $addresses));
+                            $this->_factory->createMailboxHeader($name, $addresses)
+        );
     }
 
     /**
      * Add a new Date header using $timestamp (UNIX time).
      *
-     * @param string  $name
-     * @param int     $timestamp
+     * @param string $name
+     * @param int    $timestamp
      */
     public function addDateHeader($name, $timestamp = null)
     {
         $this->_storeHeader($name,
-        $this->_factory->createDateHeader($name, $timestamp));
+                            $this->_factory->createDateHeader($name, $timestamp)
+        );
     }
 
     /**
@@ -89,7 +91,8 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     public function addTextHeader($name, $value = null)
     {
         $this->_storeHeader($name,
-        $this->_factory->createTextHeader($name, $value));
+                            $this->_factory->createTextHeader($name, $value)
+        );
     }
 
     /**
@@ -131,8 +134,8 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
      *
      * If multiple headers match, the actual one may be specified by $index.
      *
-     * @param string  $name
-     * @param int     $index
+     * @param string $name
+     * @param int    $index
      *
      * @return bool
      */
@@ -166,8 +169,8 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
      * If multiple headers match, the actual one may be specified by $index.
      * Returns NULL if none present.
      *
-     * @param string  $name
-     * @param int     $index
+     * @param string $name
+     * @param int    $index
      *
      * @return Swift_Mime_Header
      */
@@ -221,13 +224,13 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
         return array_keys($headers);
     }
 
-  /**
+    /**
      * Remove the header with the given $name if it's set.
      *
      * If multiple headers match, the actual one may be specified by $index.
      *
-     * @param string  $name
-     * @param int     $index
+     * @param string $name
+     * @param int    $index
      */
     public function remove($name, $index = 0)
     {
@@ -382,8 +385,8 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_HeaderSet
     }
 
     /**
-    * Make a deep copy of object
-    */
+     * Make a deep copy of object
+     */
     public function __clone()
     {
         $this->_factory = clone $this->_factory;

@@ -136,7 +136,7 @@ class Swift_Mime_MimePart extends Swift_Mime_SimpleMimeEntity
     /**
      * Turn delsp on or off for this entity.
      *
-     * @param bool    $delsp
+     * @param bool $delsp
      *
      * @return Swift_Mime_MimePart
      */
@@ -203,7 +203,8 @@ class Swift_Mime_MimePart extends Swift_Mime_SimpleMimeEntity
             } elseif (function_exists('iconv')) {
                 $string = iconv('utf-8//TRANSLIT//IGNORE', $charset, $string);
             } else {
-                throw new Swift_SwiftException('No suitable convert encoding function (use UTF-8 as your charset or install the mbstring or iconv extension).');
+                throw new Swift_SwiftException('No suitable convert encoding function (use UTF-8 as your charset or install the mbstring or iconv extension).'
+                );
             }
 
             return $string;

@@ -33,7 +33,7 @@ class Swift_Plugins_RedirectingPlugin implements Swift_Events_SendListener
      * Create a new RedirectingPlugin.
      *
      * @param mixed $recipient
-     * @param array  $whitelist
+     * @param array $whitelist
      */
     public function __construct($recipient, array $whitelist = array())
     {
@@ -116,7 +116,7 @@ class Swift_Plugins_RedirectingPlugin implements Swift_Events_SendListener
             $to = array();
         }
 
-        foreach ( (array) $this->_recipient as $recipient) {
+        foreach ((array)$this->_recipient as $recipient) {
             if (!array_key_exists($recipient, $to)) {
                 $message->addTo($recipient);
             }
@@ -127,7 +127,7 @@ class Swift_Plugins_RedirectingPlugin implements Swift_Events_SendListener
      * Filter header set against a whitelist of regular expressions
      *
      * @param Swift_Mime_HeaderSet $headerSet
-     * @param string $type
+     * @param string               $type
      */
     private function _filterHeaderSet(Swift_Mime_HeaderSet $headerSet, $type)
     {
@@ -163,7 +163,7 @@ class Swift_Plugins_RedirectingPlugin implements Swift_Events_SendListener
      */
     protected function _isWhitelisted($recipient)
     {
-        if (in_array($recipient, (array) $this->_recipient)) {
+        if (in_array($recipient, (array)$this->_recipient)) {
             return true;
         }
 

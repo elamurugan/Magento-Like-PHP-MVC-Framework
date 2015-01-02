@@ -29,12 +29,12 @@ class Swift_MimePart extends Swift_Mime_MimePart
         call_user_func_array(
             array($this, 'Swift_Mime_MimePart::__construct'),
             Swift_DependencyContainer::getInstance()
-                ->createDependenciesFor('mime.part')
-            );
+                                     ->createDependenciesFor('mime.part')
+        );
 
         if (!isset($charset)) {
             $charset = Swift_DependencyContainer::getInstance()
-                ->lookup('properties.charset');
+                                                ->lookup('properties.charset');
         }
         $this->setBody($body);
         $this->setCharset($charset);

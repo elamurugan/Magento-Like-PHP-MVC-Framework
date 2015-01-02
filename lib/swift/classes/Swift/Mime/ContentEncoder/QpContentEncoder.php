@@ -37,7 +37,7 @@ class Swift_Mime_ContentEncoder_QpContentEncoder extends Swift_Encoder_QpEncoder
 
     protected function getSafeMapShareId()
     {
-        return get_class($this).($this->_dotEscape ? '.dotEscape' : '');
+        return get_class($this) . ($this->_dotEscape ? '.dotEscape' : '');
     }
 
     protected function initSafeMap()
@@ -56,8 +56,8 @@ class Swift_Mime_ContentEncoder_QpContentEncoder extends Swift_Encoder_QpEncoder
      * If the first line needs to be shorter, indicate the difference with
      * $firstLineOffset.
      *
-     * @param Swift_OutputByteStream $os              output stream
-     * @param Swift_InputByteStream  $is              input stream
+     * @param Swift_OutputByteStream $os output stream
+     * @param Swift_InputByteStream  $is input stream
      * @param int                    $firstLineOffset
      * @param int                    $maxLineLength
      */
@@ -95,8 +95,8 @@ class Swift_Mime_ContentEncoder_QpContentEncoder extends Swift_Encoder_QpEncoder
             }
 
             $enc = $this->_encodeByteSequence($bytes, $size);
-            if ($currentLine && $lineLen+$size >= $thisLineLength) {
-                $is->write($prepend.$this->_standardize($currentLine));
+            if ($currentLine && $lineLen + $size >= $thisLineLength) {
+                $is->write($prepend . $this->_standardize($currentLine));
                 $currentLine = '';
                 $prepend = "=\r\n";
                 $thisLineLength = $maxLineLength;
@@ -106,7 +106,7 @@ class Swift_Mime_ContentEncoder_QpContentEncoder extends Swift_Encoder_QpEncoder
             $currentLine .= $enc;
         }
         if (strlen($currentLine)) {
-            $is->write($prepend.$this->_standardize($currentLine));
+            $is->write($prepend . $this->_standardize($currentLine));
         }
     }
 

@@ -22,9 +22,9 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
 
     private $dropFirstLF = true;
 
-    const CANON_RELAXED = 1;
-    const CANON_SIMPLE = 2;
-    const SIG_RSA_SHA1 = 3;
+    const CANON_RELAXED  = 1;
+    const CANON_SIMPLE   = 2;
+    const SIG_RSA_SHA1   = 3;
     const SIG_RSA_SHA256 = 4;
 
     public function __construct($privateKey, $domainName, $selector)
@@ -47,7 +47,7 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
         $header = new Swift_Mime_Headers_OpenDKIMHeader('DKIM-Signature');
         $headerVal = $this->_dkimHandler->getSignatureHeader();
         if (!$headerVal) {
-            throw new Swift_SwiftException('OpenDKIM Error: '.$this->_dkimHandler->getError());
+            throw new Swift_SwiftException('OpenDKIM Error: ' . $this->_dkimHandler->getError());
         }
         $header->setValue($headerVal);
         $headers->set($header);
@@ -59,12 +59,19 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
     {
         $bodyLen = $this->_bodyLen;
         if (is_bool($bodyLen)) {
-            $bodyLen = - 1;
+            $bodyLen = -1;
         }
         $hash = ($this->_hashAlgorithm == 'rsa-sha1') ? OpenDKIMSign::ALG_RSASHA1 : OpenDKIMSign::ALG_RSASHA256;
         $bodyCanon = ($this->_bodyCanon == 'simple') ? OpenDKIMSign::CANON_SIMPLE : OpenDKIMSign::CANON_RELAXED;
         $headerCanon = ($this->_headerCanon == 'simple') ? OpenDKIMSign::CANON_SIMPLE : OpenDKIMSign::CANON_RELAXED;
-        $this->_dkimHandler = new OpenDKIMSign($this->_privateKey, $this->_selector, $this->_domainName, $headerCanon, $bodyCanon, $hash, $bodyLen);
+        $this->_dkimHandler = new OpenDKIMSign($this->_privateKey,
+                                               $this->_selector,
+                                               $this->_domainName,
+                                               $headerCanon,
+                                               $bodyCanon,
+                                               $hash,
+                                               $bodyLen
+        );
         // Hardcode signature Margin for now
         $this->_dkimHandler->setMargin(78);
 
@@ -72,7 +79,7 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
             OpenDKIM::setOption(OpenDKIM::OPTS_FIXEDTIME, time());
         } else {
             if (!OpenDKIM::setOption(OpenDKIM::OPTS_FIXEDTIME, $this->_signatureTimestamp)) {
-                throw new Swift_SwiftException('Unable to force signature timestamp ['.openssl_error_string().']');
+                throw new Swift_SwiftException('Unable to force signature timestamp [' . openssl_error_string() . ']');
             }
         }
         if (isset($this->_signerIdentity)) {
@@ -81,7 +88,7 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
         $listHeaders = $headers->listAll();
         foreach ($listHeaders as $hName) {
             // Check if we need to ignore Header
-            if (! isset($this->_ignoredHeaders[strtolower($hName)])) {
+            if (!isset($this->_ignoredHeaders[strtolower($hName)])) {
                 $tmp = $headers->getAll($hName);
                 if ($headers->has($hName)) {
                     foreach ($tmp as $header) {
@@ -100,7 +107,7 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
 
     public function startBody()
     {
-        if (! $this->_peclLoaded) {
+        if (!$this->_peclLoaded) {
             return parent::startBody();
         }
         $this->dropFirstLF = true;
@@ -111,7 +118,7 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
 
     public function endBody()
     {
-        if (! $this->_peclLoaded) {
+        if (!$this->_peclLoaded) {
             return parent::endBody();
         }
         $this->_dkimHandler->eom();
@@ -156,12 +163,12 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
     /**
      * Enable / disable the DebugHeaders
      *
-     * @param bool    $debug
+     * @param bool $debug
      * @return Swift_Signers_DKIMSigner
      */
     public function setDebugHeaders($debug)
     {
-        $this->_debugHeaders = (bool) $debug;
+        $this->_debugHeaders = (bool)$debug;
 
         return $this;
     }
@@ -170,7 +177,7 @@ class Swift_Signers_OpenDKIMSigner extends Swift_Signers_DKIMSigner
 
     protected function _canonicalizeBody($string)
     {
-        if (! $this->_peclLoaded) {
+        if (!$this->_peclLoaded) {
             return parent::_canonicalizeBody($string);
         }
         if (false && $this->dropFirstLF === true) {

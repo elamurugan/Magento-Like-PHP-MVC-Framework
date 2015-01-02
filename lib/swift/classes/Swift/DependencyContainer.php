@@ -81,7 +81,7 @@ class Swift_DependencyContainer
     public function has($itemName)
     {
         return array_key_exists($itemName, $this->_store)
-            && isset($this->_store[$itemName]['lookupType']);
+        && isset($this->_store[$itemName]['lookupType']);
     }
 
     /**
@@ -99,8 +99,8 @@ class Swift_DependencyContainer
     {
         if (!$this->has($itemName)) {
             throw new Swift_DependencyException(
-                'Cannot lookup dependency "'.$itemName.'" since it is not registered.'
-                );
+                'Cannot lookup dependency "' . $itemName . '" since it is not registered.'
+            );
         }
 
         switch ($this->_store[$itemName]['lookupType']) {
@@ -138,6 +138,7 @@ class Swift_DependencyContainer
      * This method returns the current DependencyContainer instance because it
      * requires the use of the fluid interface to set the specific details for the
      * dependency.
+     *
      * @see asNewInstanceOf(), asSharedInstanceOf(), asValue()
      *
      * @param string $itemName
@@ -147,7 +148,7 @@ class Swift_DependencyContainer
     public function register($itemName)
     {
         $this->_store[$itemName] = array();
-        $this->_endPoint = & $this->_store[$itemName];
+        $this->_endPoint = &$this->_store[$itemName];
 
         return $this;
     }
@@ -163,7 +164,7 @@ class Swift_DependencyContainer
      */
     public function asValue($value)
     {
-        $endPoint = & $this->_getEndPoint();
+        $endPoint = &$this->_getEndPoint();
         $endPoint['lookupType'] = self::TYPE_VALUE;
         $endPoint['value'] = $value;
 
@@ -179,7 +180,7 @@ class Swift_DependencyContainer
      */
     public function asAliasOf($lookup)
     {
-        $endPoint = & $this->_getEndPoint();
+        $endPoint = &$this->_getEndPoint();
         $endPoint['lookupType'] = self::TYPE_ALIAS;
         $endPoint['ref'] = $lookup;
 
@@ -201,7 +202,7 @@ class Swift_DependencyContainer
      */
     public function asNewInstanceOf($className)
     {
-        $endPoint = & $this->_getEndPoint();
+        $endPoint = &$this->_getEndPoint();
         $endPoint['lookupType'] = self::TYPE_INSTANCE;
         $endPoint['className'] = $className;
 
@@ -219,7 +220,7 @@ class Swift_DependencyContainer
      */
     public function asSharedInstanceOf($className)
     {
-        $endPoint = & $this->_getEndPoint();
+        $endPoint = &$this->_getEndPoint();
         $endPoint['lookupType'] = self::TYPE_SHARED;
         $endPoint['className'] = $className;
 
@@ -239,7 +240,7 @@ class Swift_DependencyContainer
      */
     public function withDependencies(array $lookups)
     {
-        $endPoint = & $this->_getEndPoint();
+        $endPoint = &$this->_getEndPoint();
         $endPoint['args'] = array();
         foreach ($lookups as $lookup) {
             $this->addConstructorLookup($lookup);
@@ -260,7 +261,7 @@ class Swift_DependencyContainer
      */
     public function addConstructorValue($value)
     {
-        $endPoint = & $this->_getEndPoint();
+        $endPoint = &$this->_getEndPoint();
         if (!isset($endPoint['args'])) {
             $endPoint['args'] = array();
         }
@@ -281,7 +282,7 @@ class Swift_DependencyContainer
      */
     public function addConstructorLookup($lookup)
     {
-        $endPoint = & $this->_getEndPoint();
+        $endPoint = &$this->_getEndPoint();
         if (!isset($this->_endPoint['args'])) {
             $endPoint['args'] = array();
         }
@@ -309,7 +310,7 @@ class Swift_DependencyContainer
         if ($reflector->getConstructor()) {
             return $reflector->newInstanceArgs(
                 $this->createDependenciesFor($itemName)
-                );
+            );
         } else {
             return $reflector->newInstance();
         }
@@ -331,7 +332,7 @@ class Swift_DependencyContainer
         if (!isset($this->_endPoint)) {
             throw new BadMethodCallException(
                 'Component must first be registered by calling register()'
-                );
+            );
         }
 
         return $this->_endPoint;

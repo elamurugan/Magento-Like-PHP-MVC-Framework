@@ -41,10 +41,10 @@ class Swift_Mime_ContentEncoder_NativeQpContentEncoder implements Swift_Mime_Con
     /**
      * Encode $in to $out.
      *
-     * @param Swift_OutputByteStream $os              to read from
-     * @param Swift_InputByteStream  $is              to write to
+     * @param Swift_OutputByteStream $os            to read from
+     * @param Swift_InputByteStream  $is            to write to
      * @param int                    $firstLineOffset
-     * @param int                    $maxLineLength   0 indicates the default length for this encoding
+     * @param int                    $maxLineLength 0 indicates the default length for this encoding
      *
      * @throws RuntimeException
      */
@@ -52,7 +52,8 @@ class Swift_Mime_ContentEncoder_NativeQpContentEncoder implements Swift_Mime_Con
     {
         if ($this->charset !== 'utf-8') {
             throw new RuntimeException(
-                sprintf('Charset "%s" not supported. NativeQpContentEncoder only supports "utf-8"', $this->charset));
+                sprintf('Charset "%s" not supported. NativeQpContentEncoder only supports "utf-8"', $this->charset)
+            );
         }
 
         $string = '';
@@ -77,9 +78,9 @@ class Swift_Mime_ContentEncoder_NativeQpContentEncoder implements Swift_Mime_Con
     /**
      * Encode a given string to produce an encoded string.
      *
-     * @param string  $string
-     * @param int     $firstLineOffset if first line needs to be shorter
-     * @param int     $maxLineLength   0 indicates the default length for this encoding
+     * @param string $string
+     * @param int    $firstLineOffset if first line needs to be shorter
+     * @param int    $maxLineLength   0 indicates the default length for this encoding
      *
      * @return string
      *
@@ -89,7 +90,8 @@ class Swift_Mime_ContentEncoder_NativeQpContentEncoder implements Swift_Mime_Con
     {
         if ($this->charset !== 'utf-8') {
             throw new RuntimeException(
-                sprintf('Charset "%s" not supported. NativeQpContentEncoder only supports "utf-8"', $this->charset));
+                sprintf('Charset "%s" not supported. NativeQpContentEncoder only supports "utf-8"', $this->charset)
+            );
         }
 
         return $this->_standardize(quoted_printable_encode($string));

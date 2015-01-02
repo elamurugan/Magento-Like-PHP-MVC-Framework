@@ -13,7 +13,9 @@
  *
  * @author     Chris Corbyn
  */
-class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_Events_ResponseListener, Swift_Events_TransportChangeListener, Swift_Events_TransportExceptionListener, Swift_Plugins_Logger
+class Swift_Plugins_LoggerPlugin
+    implements Swift_Events_CommandListener, Swift_Events_ResponseListener, Swift_Events_TransportChangeListener,
+    Swift_Events_TransportExceptionListener, Swift_Plugins_Logger
 {
     /** The logger which is delegated to */
     private $_logger;
@@ -133,7 +135,7 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
         $message = $e->getMessage();
         $this->_logger->add(sprintf("!! %s", $message));
         $message .= PHP_EOL;
-        $message .= 'Log data:'.PHP_EOL;
+        $message .= 'Log data:' . PHP_EOL;
         $message .= $this->_logger->dump();
         $evt->cancelBubble();
         throw new Swift_TransportException($message);

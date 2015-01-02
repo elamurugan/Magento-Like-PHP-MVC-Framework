@@ -1,8 +1,9 @@
-<?php 
-	 if (Template::$contentFile != '' && file_exists($contentFileName = self::$templatePath.$module."/".self::$contentFile.".phtml")){
-		include_once($contentFileName);
-	 }
-	 else{
-		include_once(self::$templatePath.$module."/global/error_404.phtml");
-	 }
+<?php
+if (Template::$contentFile != '' && file_exists($contentFileName = self::$templatePath . $module . "/" . self::$contentFile . ".phtml"
+    )
+) {
+    include_once($contentFileName);
+} else {
+    include_once(self::$templatePath . $module . "/global/error_404.phtml");
+}
 ?>

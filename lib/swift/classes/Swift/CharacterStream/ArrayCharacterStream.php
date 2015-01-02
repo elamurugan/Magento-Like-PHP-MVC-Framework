@@ -95,7 +95,8 @@ class Swift_CharacterStream_ArrayCharacterStream implements Swift_CharacterStrea
             $need = $this->_charReader
                 ->validateByteSequence($c, $size);
             if ($need > 0 &&
-                false !== $bytes = $os->read($need)) {
+                false !== $bytes = $os->read($need)
+            ) {
                 for ($i = 0, $len = strlen($bytes); $i < $len; ++$i) {
                     $c[] = self::$_byteMap[$bytes[$i]];
                 }
@@ -121,7 +122,7 @@ class Swift_CharacterStream_ArrayCharacterStream implements Swift_CharacterStrea
      * Read $length characters from the stream and move the internal pointer
      * $length further into the stream.
      *
-     * @param int     $length
+     * @param int $length
      *
      * @return string
      */
@@ -153,7 +154,7 @@ class Swift_CharacterStream_ArrayCharacterStream implements Swift_CharacterStrea
      * Read $length characters from the stream and return a 1-dimensional array
      * containing there octet values.
      *
-     * @param int     $length
+     * @param int $length
      *
      * @return integer[]
      */
@@ -184,7 +185,8 @@ class Swift_CharacterStream_ArrayCharacterStream implements Swift_CharacterStrea
     {
         if (!isset($this->_charReader)) {
             $this->_charReader = $this->_charReaderFactory->getReaderFor(
-                $this->_charset);
+                $this->_charset
+            );
         }
 
         $startLength = $this->_charReader->getInitialByteSize();
@@ -219,7 +221,9 @@ class Swift_CharacterStream_ArrayCharacterStream implements Swift_CharacterStrea
                     $bytes[] = $buffer[$buf_pos++];
                 }
                 $need = $this->_charReader->validateByteSequence(
-                    $bytes, $size);
+                    $bytes,
+                    $size
+                );
                 if ($need > 0) {
                     if ($buf_len - $buf_pos < $need) {
                         $new = $this->_reloadBuffer($fp, $need);
@@ -244,7 +248,7 @@ class Swift_CharacterStream_ArrayCharacterStream implements Swift_CharacterStrea
     /**
      * Move the internal pointer to $charOffset in the stream.
      *
-     * @param int     $charOffset
+     * @param int $charOffset
      */
     public function setPointer($charOffset)
     {

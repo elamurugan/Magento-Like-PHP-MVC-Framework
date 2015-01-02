@@ -47,7 +47,7 @@ class Swift_Preferences
     public function setCharset($charset)
     {
         Swift_DependencyContainer::getInstance()
-            ->register('properties.charset')->asValue($charset);
+                                 ->register('properties.charset')->asValue($charset);
 
         return $this;
     }
@@ -62,7 +62,7 @@ class Swift_Preferences
     public function setTempDir($dir)
     {
         Swift_DependencyContainer::getInstance()
-            ->register('tempdir')->asValue($dir);
+                                 ->register('tempdir')->asValue($dir);
 
         return $this;
     }
@@ -77,7 +77,7 @@ class Swift_Preferences
     public function setCacheType($type)
     {
         Swift_DependencyContainer::getInstance()
-            ->register('cache')->asAliasOf(sprintf('cache.%s', $type));
+                                 ->register('cache')->asAliasOf(sprintf('cache.%s', $type));
 
         return $this;
     }
@@ -85,7 +85,7 @@ class Swift_Preferences
     /**
      * Set the QuotedPrintable dot escaper preference.
      *
-     * @param bool    $dotEscape
+     * @param bool $dotEscape
      *
      * @return Swift_Preferences
      */
@@ -93,10 +93,10 @@ class Swift_Preferences
     {
         $dotEscape = !empty($dotEscape);
         Swift_DependencyContainer::getInstance()
-            ->register('mime.qpcontentencoder')
-            ->asNewInstanceOf('Swift_Mime_ContentEncoder_QpContentEncoder')
-            ->withDependencies(array('mime.charstream', 'mime.bytecanonicalizer'))
-            ->addConstructorValue($dotEscape);
+                                 ->register('mime.qpcontentencoder')
+                                 ->asNewInstanceOf('Swift_Mime_ContentEncoder_QpContentEncoder')
+                                 ->withDependencies(array('mime.charstream', 'mime.bytecanonicalizer'))
+                                 ->addConstructorValue($dotEscape);
 
         return $this;
     }

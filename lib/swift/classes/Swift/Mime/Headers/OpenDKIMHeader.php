@@ -24,6 +24,7 @@ class Swift_Mime_Headers_OpenDKIMHeader implements Swift_Mime_Header
 
     /**
      * The name of this Header
+     *
      * @var string
      */
     private $_fieldName;
@@ -114,13 +115,14 @@ class Swift_Mime_Headers_OpenDKIMHeader implements Swift_Mime_Header
      */
     public function toString()
     {
-        return $this->_fieldName.': '.$this->_value;
+        return $this->_fieldName . ': ' . $this->_value;
     }
 
     /**
      * Set the Header FieldName
-	 * @see Swift_Mime_Header::getFieldName()
-	 */
+     *
+     * @see Swift_Mime_Header::getFieldName()
+     */
     public function getFieldName()
     {
         return $this->_fieldName;

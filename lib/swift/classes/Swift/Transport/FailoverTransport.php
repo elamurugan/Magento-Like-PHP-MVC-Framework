@@ -47,7 +47,7 @@ class Swift_Transport_FailoverTransport extends Swift_Transport_LoadBalancedTran
         $sent = 0;
 
         for ($i = 0; $i < $maxTransports
-            && $transport = $this->_getNextTransport(); ++$i) {
+        && $transport = $this->_getNextTransport(); ++$i) {
             try {
                 if (!$transport->isStarted()) {
                     $transport->start();
@@ -62,7 +62,7 @@ class Swift_Transport_FailoverTransport extends Swift_Transport_LoadBalancedTran
         if (count($this->_transports) == 0) {
             throw new Swift_TransportException(
                 'All Transports in FailoverTransport failed, or no Transports available'
-                );
+            );
         }
 
         return $sent;

@@ -19,7 +19,7 @@ interface Swift_Events_EventDispatcher
      * Create a new SendEvent for $source and $message.
      *
      * @param Swift_Transport $source
-     * @param Swift_Mime_Message
+     * @param                 Swift_Mime_Message
      *
      * @return Swift_Events_SendEvent
      */
@@ -41,7 +41,7 @@ interface Swift_Events_EventDispatcher
      *
      * @param Swift_Transport $source
      * @param string          $response
-     * @param bool            $valid    If the response is valid
+     * @param bool            $valid If the response is valid
      *
      * @return Swift_Events_ResponseEvent
      */

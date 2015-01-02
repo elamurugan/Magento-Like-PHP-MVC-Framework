@@ -104,7 +104,7 @@ class Swift_Events_SendEvent extends Swift_Events_EventObject
     /**
      * Set the result of sending.
      *
-     * @param int     $result
+     * @param int $result
      */
     public function setResult($result)
     {

@@ -26,10 +26,10 @@ interface Swift_KeyCache
      *
      * @see MODE_WRITE, MODE_APPEND
      *
-     * @param string  $nsKey
-     * @param string  $itemKey
-     * @param string  $string
-     * @param int     $mode
+     * @param string $nsKey
+     * @param string $itemKey
+     * @param string $string
+     * @param int    $mode
      */
     public function setString($nsKey, $itemKey, $string, $mode);
 
@@ -53,7 +53,7 @@ interface Swift_KeyCache
      *
      * @param string                $nsKey
      * @param string                $itemKey
-     * @param Swift_InputByteStream $is      optional input stream
+     * @param Swift_InputByteStream $is optional input stream
      *
      * @return Swift_InputByteStream
      */
@@ -74,7 +74,7 @@ interface Swift_KeyCache
      *
      * @param string                $nsKey
      * @param string                $itemKey
-     * @param Swift_InputByteStream $is      stream to write the data to
+     * @param Swift_InputByteStream $is stream to write the data to
      */
     public function exportToByteStream($nsKey, $itemKey, Swift_InputByteStream $is);
 

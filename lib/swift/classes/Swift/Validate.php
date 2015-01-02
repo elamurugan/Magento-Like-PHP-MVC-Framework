@@ -31,12 +31,12 @@ class Swift_Validate
     {
         if (self::$grammar === null) {
             self::$grammar = Swift_DependencyContainer::getInstance()
-                ->lookup('mime.grammar');
+                                                      ->lookup('mime.grammar');
         }
 
-        return (bool) preg_match(
-                '/^'.self::$grammar->getDefinition('addr-spec').'$/D',
-                $email
-            );
+        return (bool)preg_match(
+            '/^' . self::$grammar->getDefinition('addr-spec') . '$/D',
+            $email
+        );
     }
 }

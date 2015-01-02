@@ -22,7 +22,7 @@ function generateUpToDateMimeArray()
 
     // get current mime types files
     $mime_types = @file_get_contents(APACHE_MIME_TYPES_URL);
-    $mime_xml   = @file_get_contents(FREEDESKTOP_XML_URL);
+    $mime_xml = @file_get_contents(FREEDESKTOP_XML_URL);
 
     // prepare valid mime types
     $valid_mime_types = array();
@@ -144,7 +144,7 @@ function generateUpToDateMimeArray()
         }
 
         // get all matching extensions from match
-        foreach ((array) $node->glob["pattern"] as $extension) {
+        foreach ((array)$node->glob["pattern"] as $extension) {
             // skip none glob extensions
             if (strpos($extension, '.') === FALSE) {
                 continue;
@@ -162,7 +162,7 @@ function generateUpToDateMimeArray()
 
         if (isset($node->glob["pattern"][0])) {
             // mime type
-            $mime_type = strtolower((string) $node["type"]);
+            $mime_type = strtolower((string)$node["type"]);
 
             // get first extension
             $extension = strtolower(trim($node->glob["ddpattern"][0], '*.'));
@@ -185,7 +185,7 @@ function generateUpToDateMimeArray()
     ksort($valid_mime_types);
 
     // combine mime types and extensions array
-    $output = "$preamble\$swift_mime_types = array(\n    ".implode($valid_mime_types, ",\n    ")."\n);";
+    $output = "$preamble\$swift_mime_types = array(\n    " . implode($valid_mime_types, ",\n    ") . "\n);";
 
     // write mime_types.php config file
     @file_put_contents('./mime_types.php', $output);

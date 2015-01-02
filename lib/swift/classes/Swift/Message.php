@@ -45,12 +45,12 @@ class Swift_Message extends Swift_Mime_SimpleMessage
         call_user_func_array(
             array($this, 'Swift_Mime_SimpleMessage::__construct'),
             Swift_DependencyContainer::getInstance()
-                ->createDependenciesFor('mime.message')
-            );
+                                     ->createDependenciesFor('mime.message')
+        );
 
         if (!isset($charset)) {
             $charset = Swift_DependencyContainer::getInstance()
-                ->lookup('properties.charset');
+                                                ->lookup('properties.charset');
         }
         $this->setSubject($subject);
         $this->setBody($body);
@@ -87,8 +87,11 @@ class Swift_Message extends Swift_Mime_SimpleMessage
     public function addPart($body, $contentType = null, $charset = null)
     {
         return $this->attach(Swift_MimePart::newInstance(
-            $body, $contentType, $charset
-            ));
+                $body,
+                $contentType,
+                $charset
+            )
+        );
     }
 
     /**
@@ -228,6 +231,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
 
     /**
      * save the original headers
+     *
      * @param array $altered
      */
     protected function saveHeaders(array $altered)
@@ -271,6 +275,7 @@ class Swift_Message extends Swift_Mime_SimpleMessage
 
     /**
      * Clone Message Signers
+     *
      * @see Swift_Mime_SimpleMimeEntity::__clone()
      */
     public function __clone()

@@ -25,8 +25,8 @@ class Swift_MailTransport extends Swift_Transport_MailTransport
         call_user_func_array(
             array($this, 'Swift_Transport_MailTransport::__construct'),
             Swift_DependencyContainer::getInstance()
-                ->createDependenciesFor('transport.mail')
-            );
+                                     ->createDependenciesFor('transport.mail')
+        );
 
         $this->setExtraParams($extraParams);
     }

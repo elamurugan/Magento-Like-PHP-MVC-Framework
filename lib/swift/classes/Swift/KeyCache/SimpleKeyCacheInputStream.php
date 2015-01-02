@@ -51,13 +51,16 @@ class Swift_KeyCache_SimpleKeyCacheInputStream implements Swift_KeyCache_KeyCach
      * Writes $bytes to the end of the stream.
      *
      * @param string                $bytes
-     * @param Swift_InputByteStream $is    optional
+     * @param Swift_InputByteStream $is optional
      */
     public function write($bytes, Swift_InputByteStream $is = null)
     {
         $this->_keyCache->setString(
-            $this->_nsKey, $this->_itemKey, $bytes, Swift_KeyCache::MODE_APPEND
-            );
+            $this->_nsKey,
+            $this->_itemKey,
+            $bytes,
+            Swift_KeyCache::MODE_APPEND
+        );
         if (isset($is)) {
             $is->write($bytes);
         }

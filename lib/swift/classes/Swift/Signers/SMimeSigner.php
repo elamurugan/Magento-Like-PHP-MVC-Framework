@@ -55,7 +55,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
         }
 
         $this->replacementFactory = Swift_DependencyContainer::getInstance()
-            ->lookup('transport.replacementfactory');
+                                                             ->lookup('transport.replacementfactory');
 
         $this->signOptions = PKCS7_DETACHED;
 
@@ -93,14 +93,14 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      */
     public function setSignCertificate($certificate, $privateKey = null, $signOptions = PKCS7_DETACHED)
     {
-        $this->signCertificate = 'file://'.str_replace('\\', '/', realpath($certificate));
+        $this->signCertificate = 'file://' . str_replace('\\', '/', realpath($certificate));
 
         if (null !== $privateKey) {
             if (is_array($privateKey)) {
                 $this->signPrivateKey = $privateKey;
-                $this->signPrivateKey[0] = 'file://'.str_replace('\\', '/', realpath($privateKey[0]));
+                $this->signPrivateKey[0] = 'file://' . str_replace('\\', '/', realpath($privateKey[0]));
             } else {
-                $this->signPrivateKey = 'file://'.str_replace('\\', '/', realpath($privateKey));
+                $this->signPrivateKey = 'file://' . str_replace('\\', '/', realpath($privateKey));
             }
         }
 
@@ -126,10 +126,10 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
             $this->encryptCert = array();
 
             foreach ($recipientCerts as $cert) {
-                $this->encryptCert[] = 'file://'.str_replace('\\', '/', realpath($cert));
+                $this->encryptCert[] = 'file://' . str_replace('\\', '/', realpath($cert));
             }
         } else {
-            $this->encryptCert = 'file://'.str_replace('\\', '/', realpath($recipientCerts));
+            $this->encryptCert = 'file://' . str_replace('\\', '/', realpath($recipientCerts));
         }
 
         if (null !== $cipher) {
@@ -160,7 +160,8 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      *
      * The default is to first sign the message and then encrypt.
      * But some older mail clients, namely Microsoft Outlook 2000 will work when the message first encrypted.
-     * As this goes against the official specs, its recommended to only use 'encryption -> signing' when specifically targeting these 'broken' clients.
+     * As this goes against the official specs, its recommended to only use 'encryption -> signing' when specifically
+     * targeting these 'broken' clients.
      *
      * @param string $signThenEncrypt
      *
@@ -229,7 +230,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
 
     /**
      * @param Swift_InputByteStream $inputStream
-     * @param Swift_Message   $mimeEntity
+     * @param Swift_Message         $mimeEntity
      */
     protected function toSMimeByteStream(Swift_InputByteStream $inputStream, Swift_Message $message)
     {
@@ -287,7 +288,14 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     {
         $signedMessageStream = new Swift_ByteStream_TemporaryFileByteStream();
 
-        if (!openssl_pkcs7_sign($outputStream->getPath(), $signedMessageStream->getPath(), $this->signCertificate, $this->signPrivateKey, array(), $this->signOptions)) {
+        if (!openssl_pkcs7_sign($outputStream->getPath(),
+                                $signedMessageStream->getPath(),
+                                $this->signCertificate,
+                                $this->signPrivateKey,
+                                array(),
+                                $this->signOptions
+        )
+        ) {
             throw new Swift_IoException(sprintf('Failed to sign S/Mime message. Error: "%s".', openssl_error_string()));
         }
 
@@ -304,8 +312,18 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
     {
         $encryptedMessageStream = new Swift_ByteStream_TemporaryFileByteStream();
 
-        if (!openssl_pkcs7_encrypt($outputStream->getPath(), $encryptedMessageStream->getPath(), $this->encryptCert, array(), 0, $this->encryptCipher)) {
-            throw new Swift_IoException(sprintf('Failed to encrypt S/Mime message. Error: "%s".', openssl_error_string()));
+        if (!openssl_pkcs7_encrypt($outputStream->getPath(),
+                                   $encryptedMessageStream->getPath(),
+                                   $this->encryptCert,
+                                   array(),
+                                   0,
+                                   $this->encryptCipher
+        )
+        ) {
+            throw new Swift_IoException(sprintf('Failed to encrypt S/Mime message. Error: "%s".',
+                                                openssl_error_string()
+                                        )
+            );
         }
 
         $this->copyFromOpenSSLOutput($encryptedMessageStream, $is);
@@ -368,7 +386,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
         foreach ($headerLines as $headerLine) {
             // Line separated
             if (ctype_space($headerLines[0]) || false === strpos($headerLine, ':')) {
-                $headers[$currentHeaderName] .= ' '.trim($headerLine);
+                $headers[$currentHeaderName] .= ' ' . trim($headerLine);
                 continue;
             }
 
@@ -413,8 +431,14 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
             }
 
             $message->setContentType($headers['content-type']);
-            $messageHeaders->set($this->headerFactory->createTextHeader('Content-Transfer-Encoding', $headers['content-transfer-encoding']));
-            $messageHeaders->set($this->headerFactory->createTextHeader('Content-Disposition', $headers['content-disposition']));
+            $messageHeaders->set($this->headerFactory->createTextHeader('Content-Transfer-Encoding',
+                                                                        $headers['content-transfer-encoding']
+                )
+            );
+            $messageHeaders->set($this->headerFactory->createTextHeader('Content-Disposition',
+                                                                        $headers['content-disposition']
+                )
+            );
 
             while (false !== ($buffer = $fromStream->read($bufferLength))) {
                 $messageStream->write($buffer);

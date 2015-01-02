@@ -1,2 +1,4 @@
 media/
 skin/frontend/default/cache/
+.idea/
+skin/adminhtml/default/cache/

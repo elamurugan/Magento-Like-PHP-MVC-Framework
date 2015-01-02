@@ -1,0 +1,10 @@
+<?php 
+	if ($error_messages = Template::getSession('err_message')) {
+		echo '<div class="container message_text err_message">' . $error_messages . '</div>';
+		Template::setSession('err_message');
+	}
+	if ($success_messages = Template::getSession('suc_message')) {
+		echo '<div class="container message_text suc_message">' . $success_messages . '</div>';
+		Template::setSession('suc_message');
+	}
+?>

@@ -3,7 +3,7 @@
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d 
 	#RewriteRule ^ index.php [QSA,L]
-	RewriteRule ^(.*)$ index.php?url=$1 [QSA]
+	RewriteRule ^(.*)$ index.php?url_request=$1 [QSA]
 </IfModule>
 <IfModule !mod_rewrite.c>
 	ErrorDocument 404 404.php?action=404

@@ -2,10 +2,8 @@
 
 class AdminController extends Template {
 
-	public $model = false; 
 	public function AdminController() {
-		global $app,$_app_params,$modelObj;
-		$this->model = $modelObj;
+		
     } 
 	
 	public function dashboardAction($_app_params) {

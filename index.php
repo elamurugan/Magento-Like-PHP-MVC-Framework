@@ -5,8 +5,8 @@ define('_ADMIN_ROUTE_URL','admin');// Admin Base Path
 include_once _APP."/configuration.php";
 $modelObj        = $dbObj        = new Model();
 // Routing process
-if (isset($_GET['url'])){
-    $url_params = @explode("/", $_GET['url']);
+if (isset($_GET['url_request'])){
+    $url_params = @explode("/", $_GET['url_request']);
     if (isset($url_params[0]) && $url_params[0] != '') {
         $module = $url_params[0];
         array_shift($url_params);
@@ -52,7 +52,7 @@ session_name($_area);
 $module		  = $model		  = ucfirst($module);
 $module_class = $module.'Controller';
 
-if (isset($_GET['url'])){
+if (isset($_GET['url_request'])){
 	if (!class_exists($module_class)) {
 		$user_exist = $dbObj->checkUsernameExist($module); 
 		if ($user_exist) {

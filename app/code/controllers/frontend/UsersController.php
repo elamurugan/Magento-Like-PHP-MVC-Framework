@@ -2,18 +2,16 @@
 
 class UsersController extends Template {
 
-	public $model = false;
+	
 	
 	public function UsersController() {
-		global $app,$_app_params,$modelObj;
-		$this->model = $modelObj;
-		
+		 
     } 
 	
 	public function indexAction($_app_params) {
 		global $app;  
         $this->setPageTitle("Profile");
-		if($this->getSession("emp_name")){
+		if($this->model->isUserLoggedIn()){
 			$this->redirect('users/profile');
 		} else {
 		    $this->render("login",array());

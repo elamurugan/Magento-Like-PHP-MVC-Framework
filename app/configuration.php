@@ -1,7 +1,7 @@
 <?php
 $app_start_time = microtime(true);
-define('PRINT_MEMORY_USAGE',true);
 define('DEBUG_MODE', true);
+define('PRINT_MEMORY_USAGE',false);
 
 if(DEBUG_MODE){
 	error_reporting(E_ALL | E_STRICT);
@@ -64,11 +64,6 @@ spl_autoload_register('slim_mvc_autoloader');
 $module        = "page"; // Default module
 $function      = "index"; // Default action
 $_area 		   = "frontend"; // Is it for frontend or admin template/skin
-
-
-$_statues  = array(0 => "New",1 =>  "Open",2 =>  "Under Progress",3 =>  "Testing",4 =>  "Under Client review",5 =>  "Completed",6 =>  "Closed");
-$_priority = array(1 =>  "Highest(1)",2 =>  "High(2)",3 =>  "Normal(3)",4 =>  "Low(4)",5 =>  "Lowest(5)");
-
 
 // Global Js,css files for frontend and admin - can convert this into xml or json
 $globalJsFiles['frontend']  = array("js/lib/jquery-1.9.1.min.js","js/lib/bootstrap.js","js/scripts.js");

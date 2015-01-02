@@ -64,8 +64,9 @@ function debug($data, $die = 0, $option = 1) {
 }
 
 function slim_mvc_autoloader($className) {
-	if (file_exists(_BASEDIR."app/code/controllers/".$className.".php")) {
-		include_once _BASEDIR."app/code/controllers/".$className.".php";
+	global $_area;
+	if (file_exists(_BASEDIR."app/code/controllers/".$_area."/".$className.".php")) {
+		include_once _BASEDIR."app/code/controllers/".$_area."/".$className.".php";
 	}
 	elseif (file_exists(_BASEDIR."app/code/models/".$className.".php")) {
 		include_once _BASEDIR."app/code/models/".$className.".php";

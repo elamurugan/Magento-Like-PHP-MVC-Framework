@@ -181,6 +181,6 @@ INSERT INTO `config` (`id`, `path`, `value`) VALUES
 (2, 'compressed_css_file', ''),
 (3, 'site_title', 'Slim MVC Framework'),
 (4, 'site_meta_description', 'Slim MVC Framework'),
-(4, 'site_meta_keywords', 'Slim MVC Framework'),
-(5, 'js_compress', '0'),
-(6, 'css_compress', '0');
+(5, 'site_meta_keywords', 'Slim MVC Framework'),
+(6, 'js_compress', '0'),
+(7, 'css_compress', '0');

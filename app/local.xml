@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<db>
+  <host>localhost</host>
+  <user>root</user>
+  <password></password>
+  <db_name></db_name>
+  <table_prefix></table_prefix>
+</db>
+<admin>
+	<route_path>admin</route_path>
+</admin>	

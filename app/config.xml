@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+  <path>
+	<app>app</app>
+	<skin>skin</skin>
+	<var_cache>var/cache/</var_cache>
+  </path>
+  <default>
+	<module>page</module>
+	<function>index</function>
+	<area>frontend</area>
+  </default>
+  <version>1.0</version>
+  <adminhtml>
+  	<layout>layout.xml</layout>
+  </adminhtml>
+  <frontend>
+  	<layout>layout.xml</layout>
+  </frontend>
+  <db>
+  	<tables>
+		<config>config</config>
+  		<users>users</users>
+  		<cms_pages>cms_pages</cms_pages>
+  		<url_rewrites>url_rewrites</url_rewrites>
+  	</tables>
+  </db>
+</config>

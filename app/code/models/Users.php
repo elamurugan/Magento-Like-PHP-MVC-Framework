@@ -8,7 +8,7 @@ class Users extends Model
         $email = $params['email'];
         $password = md5($params['password']);
         $qry = "select * from `users`  where emp_email='$email' and password='$password' ";
-        $response = $this->fetch_assoc($qry);
+        $response = $this->fetch($qry);
         if ($response) {
             return $response[0];
         }
@@ -34,8 +34,8 @@ class Users extends Model
             $emp_blood = $params['emp_blood'];
 
             $qry = "select * from  `users` where emp_email='$emp_email' ";
-            $result = $this->query($qry);
-            $count = $this->number_of_rows();
+            $result = $this->exec($qry);
+            $count = $this->getNumberOfROws();
             if ($count > 0) {
                 $msgs['type'] = 'err_message';
                 $msgs['msg'] = "Employee already registered, Please Check";

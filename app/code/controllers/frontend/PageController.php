@@ -1,6 +1,6 @@
 <?php
 
-class PageController extends Template
+class PageController extends Controller
 {
 
     public function PageController()

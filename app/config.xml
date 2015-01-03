@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<config>
+<config>	
+  <version>1.0</version>
   <path>
 	<app>app</app>
 	<skin>skin</skin>
@@ -9,8 +10,19 @@
 	<module>page</module>
 	<function>index</function>
 	<area>frontend</area>
+	
+	<enable_email>1</enable_email>
+	<site_title>Slim PHP MVC framework</site_title>
+	<site_meta_keywords>Slim PHP MVC framework</site_meta_keywords>
+	<site_meta_description>Slim PHP MVC framework</site_meta_description>
+	<frontend>
+		<theme>default</theme>
+	</frontend>	
+	<adminhtml>
+		<theme>default</theme>
+	</adminhtml>
+	<time_zone>Asia/Kolkata</time_zone>
   </default>
-  <version>1.0</version>
   <adminhtml>
   	<layout>layout.xml</layout>
   </adminhtml>

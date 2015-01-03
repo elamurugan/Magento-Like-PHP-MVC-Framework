@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends Template
+class AdminController extends Controller
 {
 
     public function AdminController()

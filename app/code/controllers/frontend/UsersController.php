@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends Template
+class UsersController extends Controller
 {
 
     public function UsersController()

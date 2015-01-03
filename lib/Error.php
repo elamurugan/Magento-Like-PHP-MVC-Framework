@@ -1,10 +1,8 @@
 <?php
-class Error extends Template
+class Error extends Controller
 {
-    var $array = array();
-
-    public static function exception($_class)
+    public static function printError($_className)
     {
-        Template::$layout = 'exception';
+        Layout::$rootLayout = 'exception';
     }
 }

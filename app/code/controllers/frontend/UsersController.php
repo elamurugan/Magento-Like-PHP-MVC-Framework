@@ -13,7 +13,7 @@ class UsersController extends Controller
         if ($this->model->isUserLoggedIn()) {
             $this->redirect('users/profile');
         } else {
-            $this->render("login", array());
+            $this->renderHtml(array());
         }
     }
 
@@ -35,7 +35,7 @@ class UsersController extends Controller
             }
             return;
         }
-        $this->render("login", array());
+        $this->renderHtml(array());
     }
 
     public function createAction()
@@ -47,13 +47,13 @@ class UsersController extends Controller
             $this->redirect("users/profile");
             return;
         }
-        $this->render("create");
+        $this->renderHtml();
     }
 
     public function profileAction()
     {
         if ($this->model->isUserLoggedIn()) {
-            $this->render("profile", array());
+            $this->renderHtml(array());
         } else {
             $this->redirect('users/login');
         }
@@ -61,7 +61,7 @@ class UsersController extends Controller
 
     public function profileviewAction()
     {
-        $this->render("profile_view", array());
+        $this->renderHtml(array());
     }
 
     public function logoutAction()

@@ -1,65 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><?php echo $app->getPageTitle(); ?></title>
-    <meta name="keywords" content="<?php echo $app->getPageMetaKeywords(); ?>">
-    <meta name="description" content="<?php echo $app->getPageMetadescription(); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script type="text/javascript">var _BASEURL = "<?php echo _BASEURL ?>" </script>
-    <?php echo $app->renderCss(); ?>
-    <?php echo $app->renderJs(); ?>
-</head>
-
-<body class="<?php echo $app->getBodyClass(); ?>">
 <?php
 //Template level Model access
-// $usersList = $app->model->getUsers();
+// $usersList = $this->model->getUsers();
 // debug($usersList);
 // Sample controller level Function call
-// $usersList = $app->_sampleControllerFunction();
+// $usersList = $this->_sampleControllerFunction();
 ?>
-<div class="wrapper">
-    <div class="page">
-        <?php if ($app->model->isUserLoggedIn()) { ?>
-            <div role="navigation" class="header navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a href="<?php echo $app->getBaseUrl(); ?>" class="navbar-brand"><?php echo $app->getSiteTitle(
-                            ); ?></a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="<?php echo $app->getBaseUrl(); ?>">Home</a></li>
-                            <li><a href="<?php echo $app->getBaseUrl(); ?>users/profile/">My Account</a></li>
-                            <li><a href="<?php echo $app->getBaseUrl(); ?>about-us/">About Us</a></li>
-                            <li><a href="<?php echo $app->getBaseUrl(); ?>contact-us/">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
+<?php if ($this->model && $this->model->isUserLoggedIn()) { ?>
+    <div role="navigation" class="header navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="<?php echo $this->getBaseUrl(); ?>" class="navbar-brand"><?php echo $this->siteTitle; ?></a>
             </div>
-        <?php
-        } else {
-            ?>
-            <div role="navigation" class="header navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a href="<?php echo $app->getBaseUrl(); ?>" class="navbar-brand"><?php echo $app->getSiteTitle(
-                            ); ?></a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="<?php echo $app->getBaseUrl(); ?>">Home</a></li>
-                            <li><a href="<?php echo $app->getBaseUrl(); ?>users/login/">Login</a></li>
-							<li><a href="<?php echo $app->getBaseUrl(); ?>users/create/">Register</a></li>
-                            <li><a href="<?php echo $app->getBaseUrl(); ?>about-us/">About Us</a></li>
-                            <li><a href="<?php echo $app->getBaseUrl(); ?>contact-us/">Contact</a></li>
-                            <li><a href="<?php echo $app->getBaseUrl(); ?>page/invalid/">Invalid Page</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="<?php echo $this->getBaseUrl(); ?>">Home</a></li>
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>users/profile/">My Account</a></li>
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>about-us/">About Us</a></li>
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>contact-us/">Contact Us</a></li>
+                </ul>
             </div>
-        <?php
-        }
-        ?>
+        </div>
+    </div>
+<?php
+} else {
+    ?>
+    <div role="navigation" class="header navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="<?php echo $this->getBaseUrl(); ?>" class="navbar-brand"><?php echo $this->siteTitle; ?></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>">Home</a></li>
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>users/login/">Login</a></li>
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>users/create/">Register</a></li>
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>about-us/">About Us</a></li>
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>contact-us/">Contact</a></li>
+                    <li><a href="<?php echo $this->getBaseUrl(); ?>page/invalid/">Invalid Page</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<?php
+}
+?>
+
+<?php echo $this->getChildHtml('messages') ?>

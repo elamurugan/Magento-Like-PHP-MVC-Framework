@@ -25,7 +25,7 @@ class PageController extends Controller
         //parent::addJs("js/contacts.js");// To add Js from controller
         $this->setBodyClass("fixed");// To set Function specific Body class
         $this->setPageTitle("Home");
-        $this->render("index",array("welcome_msg" => "Welcome Back"));
+        $this->renderHtml(array("welcome_msg" => "Welcome Back"));
     }
 
     /**
@@ -34,19 +34,19 @@ class PageController extends Controller
     public function aboutAction()
     {
         $this->setPageTitle("About Us");
-        $this->render("about");
+        $this->renderHtml();
     }
 
     public function contactAction()
     {
         $this->setPageTitle("Contact Us");
-        $this->render("contact");
+        $this->renderHtml();
     }
 
     public function invalidAction()
     {
         parent::$rootLayout = 'invalid';
-        $this->render("invalid");
+        $this->renderHtml();
     }
 
     public function clearcacheAction()

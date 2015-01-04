@@ -68,7 +68,8 @@ function slimMVCAutoloader($className)
         include_once _APPDIR . "/code/models/" . $className . ".php";
     } else {
         include_once _BASEDIR . "lib/Error.php";
-        Error::printError($className);
+        $errorObj = new Error();
+        $errorObj->printError($className);
     }
 }
 
@@ -101,7 +102,7 @@ function run()
         if (isset($urlParams[0]) && $urlParams[0] != '') {
             $__module = $urlParams[0];
             array_shift($urlParams);
-            if ($__module == $xmlObj->adminRoutePath) {
+            if ($__module == $xmlObj::$adminRoutePath) {
                 $__area = $xmlObj->getConfig('default/adminhtml/area');
                 $__module = $xmlObj->getConfig('default/adminhtml/module');
                 $__action = $xmlObj->getConfig('default/adminhtml/function');

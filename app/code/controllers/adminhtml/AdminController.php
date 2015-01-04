@@ -11,15 +11,15 @@ class AdminController extends Controller
     {
         $this->setPageTitle("Dashboard");
         if (!$this->model->isUserLoggedIn()) {
-            $this->redirect(_ADMIN_ROUTE_URL . '/admin/login');
+            $this->redirect( 'admin/login');
         }
-        $this->render("dashboard", array());
+        $this->renderHtml(array());
     }
 
     public function loginAction()
     {
         if ($this->model->isUserLoggedIn()) {
-            $this->redirect(_ADMIN_ROUTE_URL . '/admin/dashboard');
+            $this->redirect('admin/dashboard');
             return;
         } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
@@ -34,12 +34,12 @@ class AdminController extends Controller
             }
             return;
         }
-        $this->render("login", array());
+        $this->renderHtml(array());
     }
 
     public function logoutAction()
     {
         $this->resetApp();
-        $this->redirect(_ADMIN_ROUTE_URL . "/");
+        $this->redirect('');
     }
 }

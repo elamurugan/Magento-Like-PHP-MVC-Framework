@@ -2,7 +2,10 @@
 
 ?>
     <title>Something Went wrong</title>
-    Something Went wrong, <a href="<?php echo $app->getBaseUrl(); ?>">Go Back</a>.
+<?php echo $this->getChildHtml('content') ?>
+
+    Something Went wrong, <a href="<?php echo $this->getBaseUrl(); ?>">Go Back</a>.
+
 <?php
-Template::printAppFilesStack();
+Core::printAppFilesStack();
 ?>

@@ -3,8 +3,13 @@
     <default>
         <block template="1column.phtml" name="root">
             <block template="global/head.phtml" name="head">
-                <action addItem="css" file="css/css.css" params="" cond=""/>
-                <action addItem="js" file="js/js.js" params="" cond=""/>
+                <action addItem="css" file="css/bootstrap.css" params="" cond=""/>
+                <action addItem="css" file="css/dropzone.css"/>
+                <action addItem="css" file="css/jquery-te-1.4.0.css"/>
+                <action addItem="css" file="css/custom.css"/>
+                <action addItem="js" file="js/lib/jquery-1.9.1.min.js"/>
+                <action addItem="js" file="js/lib/bootstrap.js"/>
+                <action addItem="js" file="js/scripts.js"/>
             </block>
             <block template="global/header.phtml" name="header">
                 <block template="global/messages.phtml" name="messages"/>
@@ -19,19 +24,47 @@
     <page_index>
         <reference name="root">
             <action setTemplate="1column.phtml"/>
+            <block template="global/ga.phtml" name="ga" toHtml="true" />
+            <block template="global/welcome_note.phtml" name="welcome_note" toHtml="true"/>
+        </reference>
+        <reference name="content">
+            <action setTemplate="page/index.phtml"/>
+        </reference>
+        <reference name="head">
+            <action addItem="css" file="css/page.css" params="" cond=""/>
         </reference>
     </page_index>
     <page_view>
+        <reference name="content">
+            <action setTemplate="page/view.phtml"/>
+        </reference>
     </page_view>
     <page_contact>
         <reference name="root">
             <action setTemplate="2column-left.phtml"/>
         </reference>
+        <reference name="content">
+            <action setTemplate="page/contact.phtml"/>
+        </reference>
     </page_contact>
+    <page_error404>
+        <reference name="content">
+            <action setTemplate="global/error_404.phtml"/>
+        </reference>
+    </page_error404>
     <users_login>
+        <reference name="content">
+            <action setTemplate="users/login.phtml"/>
+        </reference>
     </users_login>
     <users_create>
+        <reference name="content">
+            <action setTemplate="users/create.phtml"/>
+        </reference>
     </users_create>
     <users_profile>
+        <reference name="content">
+            <action setTemplate="users/profile.phtml"/>
+        </reference>
     </users_profile>
 </layout>

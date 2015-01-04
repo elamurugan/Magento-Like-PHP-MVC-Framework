@@ -1,43 +1,29 @@
-<?php
-if (Template::$headerFile != '' && file_exists($headerFileName = Template::$templatePath . 'global/' . Template::$headerFile . ".phtml"
-    )
-) {
-    include_once($headerFileName);
-}
-?>
-<div class="body layout_<?php echo Template::$layout; ?>">
-    <div class="content">
-        <?php
-        if (Template::$leftFile != '' && file_exists($leftFileName = Template::$templatePath . 'global/' . Template::$leftFile . ".phtml"
-            )
-        ) {
-            include_once($leftFileName);
-        }
-        ?>
-        <div class="main">
-            <?php
-            if (Template::$contentFile != '' && file_exists($contentFileName = self::$templatePath . $module . "/" . self::$contentFile . ".phtml"
-                )
-            ) {
-                include_once($contentFileName);
-            } else {
-                include_once(self::$templatePath . $module . "/global/error_404.phtml");
-            }
-            ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php echo $this->getChildHtml('head') ?>
+</head>
+<body class="<?php echo $this->getBodyClass(); ?>">
+<div class="wrapper">
+    <?php echo $this->getChildHtml('notices') ?>
+    <div class="page">
+        <?php echo $this->getChildHtml('header') ?>
+        <div class="main-container col3-layout">
+            <div class="main">
+
+                <div class="sidebar left">
+                    <?php echo $this->getChildHtml('left') ?>
+                </div>
+                <div class="col-main">
+                    <?php echo $this->getChildHtml('content') ?>
+                </div>
+                <div class="sidebar right">
+                    <?php echo $this->getChildHtml('right') ?>
+                </div>
+            </div>
         </div>
-        <?php
-        if (Template::$rightFile != '' && file_exists($rightFileName = Template::$templatePath . 'global/' . Template::$rightFile . ".phtml"
-            )
-        ) {
-            include_once($rightFileName);
-        }
-        ?>
+        <?php echo $this->getChildHtml('footer') ?>
     </div>
 </div>
-<?php
-if (Template::$footerFile != '' && file_exists($footerFileName = Template::$templatePath . 'global/' . Template::$footerFile . ".phtml"
-    )
-) {
-    include_once($footerFileName);
-}
-?>
+</body>
+</html>

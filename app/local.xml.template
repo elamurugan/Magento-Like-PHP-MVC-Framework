@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
-<db>
-  <host>{{host}}</host>
-  <user>{{user}}</user>
-  <password>{{password}}</password>
-  <db_name>{{db_name}}</db_name>
-  <table_prefix>{{table_prefix}}</table_prefix>
-</db>
-<admin>
-	<route_path>{{host}}</route_path>
-</admin>	
+<system>
+    <db>
+      <host>{{host}}</host>
+      <user>{{user}}</user>
+      <password>{{password}}</password>
+      <db_name>{{db_name}}</db_name>
+      <table_prefix>{{table_prefix}}</table_prefix>
+    </db>
+    <admin>
+        <route_path>{{host}}</route_path>
+    </admin>
+</system>

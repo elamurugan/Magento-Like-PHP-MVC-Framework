@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
-<db>
-  <host>localhost</host>
-  <user>root</user>
-  <password></password>
-  <db_name>sample_db</db_name>
-  <table_prefix></table_prefix>
-</db>
-<admin>
-	<route_path>admin</route_path>
-</admin>	
+<system>
+    <db>
+        <host>localhost</host>
+        <user>root</user>
+        <password></password>
+        <db_name>sample_db</db_name>
+        <table_prefix></table_prefix>
+    </db>
+    <admin>
+        <route_path>admin</route_path>
+    </admin>
+</system>

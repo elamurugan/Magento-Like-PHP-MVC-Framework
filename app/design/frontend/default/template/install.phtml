@@ -1,5 +1,22 @@
-<?php
-
-?>
-    <title>Install</title>
-    <a href="<?php echo $app->getBaseUrl(); ?>">Go Back</a>.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php echo $this->getChildHtml('head') ?>
+</head>
+<body class="<?php echo $this->getBodyClass(); ?>">
+<div class="wrapper">
+    <?php echo $this->getChildHtml('notices') ?>
+    <div class="page">
+        <?php echo $this->getChildHtml('header') ?>
+        <div class="main-container install-layout">
+            <div class="main">
+                <div class="col-main">
+                    <?php echo $this->getChildHtml('content') ?>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->getChildHtml('footer') ?>
+    </div>
+</div>
+</body>
+</html>

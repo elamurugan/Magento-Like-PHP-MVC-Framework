@@ -1,41 +1,29 @@
 <?xml version="1.0"?>
 <layout>
-
-  <default>
-  	<section template="1column.phtml" name="page">
-  		<section template="global/head.phtml" name="head">
-			<action addItem="css" file="css/css.css" params="" cond=""/>
-			<action addItem="js" file="js/js.js" params="" cond=""/>
-		</section>
-  		<section template="global/header.phtml" name="header">
-  			<section template="global/messages.phtml" name="messages"/>
-  		</section>
-  		<section template="global/notices.phtml" name="notices"/>
-  		<section template="global/left.phtml" name="left"/>
-  		<section template="global/right.phtml" name="right"/>
-  		<section template="global/footer.phtml" name="footer"/>
-  		<section template="page/index.phtml" name="content"/>
-  	</section>
-  </default>
-
-  <page_view>
-  	<update name="page"><action setTemplate="1column.phtml"/></update>
-  </page_view>
-
-  <page_contact>
-  	<update name="page"><action setTemplate="2column-left.phtml"/></update>
-  </page_contact>
-
-  <users_login>
-
-  </users_login>
-
-  <users_create>
-  
-  </users_create>
-
-  <users_profile>
-   
-  </users_profile>
-
+    <default>
+        <block template="1column.phtml" name="root">
+            <block template="global/head.phtml" name="head">
+                <action addItem="css" file="css/bootstrap.css" params="" cond=""/>
+                <action addItem="css" file="css/custom.css"/>
+                <action addItem="js" file="js/lib/jquery-1.9.1.min.js"/>
+                <action addItem="js" file="js/scripts.js"/>
+            </block>
+            <block template="global/header.phtml" name="header">
+                <block template="global/messages.phtml" name="messages"/>
+            </block>
+            <block template="global/notices.phtml" name="notices"/>
+            <block template="global/footer.phtml" name="footer"/>
+            <block template="admin/dashboard.phtml" name="content"/>
+        </block>
+    </default>
+    <admin_login>
+        <reference name="content">
+            <action setTemplate="admin/login.phtml"/>
+        </reference>
+    </admin_login>
+    <admin_dashboard>
+        <reference name="content">
+            <action setTemplate="admin/dashboard.phtml"/>
+        </reference>
+    </admin_dashboard>
 </layout>

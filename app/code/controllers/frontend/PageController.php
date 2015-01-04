@@ -45,7 +45,7 @@ class PageController extends Controller
 
     public function invalidAction()
     {
-        parent::$rootLayout = 'invalid';
+        $this->setPageTitle("Invalid Page");
         $this->renderHtml();
     }
 

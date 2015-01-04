@@ -1,0 +1,1 @@
+<?phpclass Installer extends Controller{    public function setup()    {        $this->setPageTitle("Install");        $this->renderHtml(array("welcome_msg" => "Welcome to installer"));    }}

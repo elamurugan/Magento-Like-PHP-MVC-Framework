@@ -86,6 +86,7 @@ function _init()
 function run()
 {
     global $__area, $app, $xmlObj, $dbObj;
+    $model = false;
     _init();
     $xmlObj = new XMLParser();
     $xmlObj->configPrepare();
@@ -136,43 +137,69 @@ function run()
     }
     session_start();
     session_name($__area);
-    $_controllerClass = ucfirst($__module) . 'Controller';
+    if (Utils::isInstalled()) {
+        $_controllerClass = ucfirst($__module) . 'Controller';
 
-    if (isset($_GET['url_request']) && !class_exists($_controllerClass)) {
-        $userExist = $dbObj->checkUsernameExist($__module);
-        if ($userExist) {
-            $__module = 'users';
-            $_controllerClass = ucfirst($__module) . 'Controller';
-            $__action = "profileview";
-            $__resultData['current_user'] = $userExist;
-        } else {
-            $__module = 'error';
-            $_controllerClass = ucfirst($__module);
+        if (isset($_GET['url_request']) && !class_exists($_controllerClass)) {
+            $userExist = $dbObj->checkUsernameExist($__module);
+            if ($userExist) {
+                $__module = 'users';
+                $_controllerClass = ucfirst($__module) . 'Controller';
+                $__action = "profileview";
+                $__resultData['current_user'] = $userExist;
+            } else {
+                $__module = 'error';
+                $_controllerClass = ucfirst($__module);
+            }
         }
-    }
 
-    $app = new $_controllerClass();
-    $action = $__action . "Action";
-    if (!method_exists($app, $action)) {
-        $__action = "error404";
+        $app = new $_controllerClass();
         $action = $__action . "Action";
-    }
-    $handler = strtolower($__module . "_" . $__action);
+        if (!method_exists($app, $action)) {
+            $__action = "error404";
+            $action = $__action . "Action";
+        }
+        $handler = strtolower($__module . "_" . $__action);
 
-    $app::$__area = $__area;
-    $app->__module = $__module;
-    $app->__action = $__action;
-    $app->__appParams = $__appParams;
-    $app->__resultData = $__resultData;
+        $app::$__area = $__area;
+        $app->__module = $__module;
+        $app->__action = $__action;
+        $app->__appParams = $__appParams;
+        $app->__resultData = $__resultData;
 
-    $modelClass = ucfirst($__module);
-    if ($modelClass != '' && class_exists($modelClass)) {
-        $model = new $modelClass;
+        $modelClass = ucfirst($__module);
+        if ($modelClass != '' && class_exists($modelClass)) {
+            $model = new $modelClass;
+        }
+        $app->template = $app;
+        $app->model = $model;
+        $app->_templateInit();
+        $app->setBodyClass($handler);
+        $app->addHandle($handler);
+        $app->$action();
     }
-    $app->template = $app;
-    $app->model = $model;
-    $app->_templateInit();
-    $app->setBodyClass($handler);
-    $app->addHandle($handler);
-    $app->$action();
+    else {
+        $__module = 'install';
+        $__action = 'setup';
+        $installer = new Installer();
+
+        $handler = strtolower($__module . "_" . $__action);
+
+        $installer::$__area = $__area;
+        $installer->__module = $__module;
+        $installer->__action = $__action;
+        $installer->__appParams = $__appParams;
+        $installer->__resultData = $__resultData;
+
+        $modelClass = ucfirst($__module);
+        if ($modelClass != '' && class_exists($modelClass)) {
+            $model = new $modelClass;
+        }
+        $installer->template = $installer;
+        $installer->model = $model;
+        $installer->_templateInit();
+        $installer->setBodyClass($handler);
+        $installer->addHandle($handler);
+        $installer->setup();
+    }
 }

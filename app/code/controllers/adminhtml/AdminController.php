@@ -7,9 +7,8 @@ class AdminController extends Controller
     {
     }
 
-    public function dashboardAction($_app_params)
+    public function dashboardAction()
     {
-        global $app;
         $this->setPageTitle("Dashboard");
         if (!$this->model->isUserLoggedIn()) {
             $this->redirect(_ADMIN_ROUTE_URL . '/admin/login');
@@ -17,9 +16,8 @@ class AdminController extends Controller
         $this->render("dashboard", array());
     }
 
-    public function loginAction($_app_params)
+    public function loginAction()
     {
-        global $app;
         if ($this->model->isUserLoggedIn()) {
             $this->redirect(_ADMIN_ROUTE_URL . '/admin/dashboard');
             return;
@@ -39,7 +37,7 @@ class AdminController extends Controller
         $this->render("login", array());
     }
 
-    public function logoutAction($_app_params)
+    public function logoutAction()
     {
         $this->resetApp();
         $this->redirect(_ADMIN_ROUTE_URL . "/");

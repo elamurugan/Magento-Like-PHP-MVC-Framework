@@ -1,0 +1,1 @@
+<?phpclass Utils extends Controller{    /**     * @return array     */    public static function userTypes()    {        $types = array('ADMIN' => 'Admin', 'USER' => 'User');        return $types;    }}

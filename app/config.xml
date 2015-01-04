@@ -1,40 +1,44 @@
 <?xml version="1.0"?>
-<config>	
-  <version>1.0</version>
-  <path>
-	<app>app</app>
-	<skin>skin</skin>
-	<var_cache>var/cache/</var_cache>
-  </path>
-  <default>
-	<module>page</module>
-	<function>index</function>
-	<area>frontend</area>
-	
-	<enable_email>1</enable_email>
-	<site_title>Slim PHP MVC framework</site_title>
-	<site_meta_keywords>Slim PHP MVC framework</site_meta_keywords>
-	<site_meta_description>Slim PHP MVC framework</site_meta_description>
-	<frontend>
-		<theme>default</theme>
-	</frontend>	
-	<adminhtml>
-		<theme>default</theme>
-	</adminhtml>
-	<time_zone>Asia/Kolkata</time_zone>
-  </default>
-  <adminhtml>
-  	<layout>layout.xml</layout>
-  </adminhtml>
-  <frontend>
-  	<layout>layout.xml</layout>
-  </frontend>
-  <db>
-  	<tables>
-		<config>config</config>
-  		<users>users</users>
-  		<cms_pages>cms_pages</cms_pages>
-  		<url_rewrites>url_rewrites</url_rewrites>
-  	</tables>
-  </db>
+<config>
+    <version>1.0</version>
+    <path label="For to mention System Paths">
+        <app>app</app>
+        <skin>skin</skin>
+        <var_cache>var/cache/</var_cache>
+    </path>
+    <default>
+        <area>frontend</area>
+        <enable_email>1</enable_email>
+        <print_execution_order>0</print_execution_order>
+        <site_title>Slim PHP MVC framework</site_title>
+        <site_meta_keywords>Slim PHP MVC framework</site_meta_keywords>
+        <site_meta_description>Slim PHP MVC framework</site_meta_description>
+        <frontend>
+            <theme>default</theme>
+            <module>page</module>
+            <function>index</function>
+            <area>frontend</area>
+        </frontend>
+        <adminhtml>
+            <theme>default</theme>
+            <module>admin</module>
+            <function>dashboard</function>
+            <area>adminhtml</area>
+        </adminhtml>
+        <time_zone>Asia/Kolkata</time_zone>
+    </default>
+    <adminhtml>
+        <layout>layout.xml</layout>
+    </adminhtml>
+    <frontend>
+        <layout>layout.xml</layout>
+    </frontend>
+    <db>
+        <tables>
+            <config>config</config>
+            <users>users</users>
+            <cms_pages>cms_pages</cms_pages>
+            <url_rewrites>url_rewrites</url_rewrites>
+        </tables>
+    </db>
 </config>

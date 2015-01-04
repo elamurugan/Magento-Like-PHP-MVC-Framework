@@ -3,50 +3,53 @@
 class PageController extends Controller
 {
 
+    /**
+     *
+     */
     public function PageController()
     {
-        parent::$layout = '1column';
+
     }
 
-    public function indexAction($_app_params)
+    /**
+     *
+     */
+    public function indexAction()
     {
-        global $app;
         // $this->setSession('suc_message' ,"You logged in successfully"); // To set session
         // $this->getSession("suc_message");// To get session
-        // $this->getParams(); // To retrive all params
-        // $this->getParamsByType('post'); // To retrive all params by post type
-        // $this->getParam("id");// To retrive id param
+        // $this->getParams(); // To get all params
+        // $this->getParamsByType('post'); // To get all params by post type
+        // $this->getParam("id");// To get id param
         // $this->model->getUsers();// To call Model file
+        //parent::addJs("js/contacts.js");// To add Js from controller
         $this->setBodyClass("fixed");// To set Function specific Body class
         $this->setPageTitle("Home");
-        $this->render("index", array());
+        $this->render("index",array("welcome_msg" => "Welcome Back"));
     }
 
-    public function aboutAction($_app_params)
+    /**
+     *
+     */
+    public function aboutAction()
     {
-        global $app;
-        parent::$layout = '3column';
         $this->setPageTitle("About Us");
-        $this->render("about", array());
+        $this->render("about");
     }
 
-    public function contactAction($_app_params)
+    public function contactAction()
     {
-        global $app;
-        parent::$layout = '2column-left';
-        parent::addJs("js/contacts.js");
         $this->setPageTitle("Contact Us");
-        $this->render("contact", array());
+        $this->render("contact");
     }
 
-    public function invalidAction($_app_params)
+    public function invalidAction()
     {
-        global $app;
-        parent::$layout = 'invalid';
-        $this->render("invalid", array());
+        parent::$rootLayout = 'invalid';
+        $this->render("invalid");
     }
 
-    public function clearcacheAction($_app_params)
+    public function clearcacheAction()
     {
         $this->clearCssJsCache();
         $this->redirect('page/index');
@@ -54,6 +57,6 @@ class PageController extends Controller
 
     public function _sampleControllerFunction()
     {
-        debug('test to show controller level template call');
+        debug('Test to show controller level template call');
     }
 }

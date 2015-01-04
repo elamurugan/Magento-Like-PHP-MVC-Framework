@@ -7,9 +7,8 @@ class UsersController extends Controller
     {
     }
 
-    public function indexAction($_app_params)
+    public function indexAction()
     {
-        global $app;
         $this->setPageTitle("Profile");
         if ($this->model->isUserLoggedIn()) {
             $this->redirect('users/profile');
@@ -18,9 +17,8 @@ class UsersController extends Controller
         }
     }
 
-    public function loginAction($_app_params)
+    public function loginAction()
     {
-        global $app;
         if ($this->model->isUserLoggedIn()) {
             $this->redirect('users/profile');
             return;
@@ -40,9 +38,8 @@ class UsersController extends Controller
         $this->render("login", array());
     }
 
-    public function createAction($_app_params)
+    public function createAction()
     {
-        global $app, $_statues, $_priority;
         if (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->create($postParams);
@@ -50,10 +47,10 @@ class UsersController extends Controller
             $this->redirect("users/profile");
             return;
         }
-        $this->render("create", array());
+        $this->render("create");
     }
 
-    public function profileAction($_app_params)
+    public function profileAction()
     {
         if ($this->model->isUserLoggedIn()) {
             $this->render("profile", array());
@@ -62,12 +59,12 @@ class UsersController extends Controller
         }
     }
 
-    public function profileviewAction($_app_params)
+    public function profileviewAction()
     {
-        $this->render("profile_view", array('current_user' => $_app_params['current_user']));
+        $this->render("profile_view", array());
     }
 
-    public function logoutAction($_app_params)
+    public function logoutAction()
     {
         $this->resetApp();
         $this->redirect("");

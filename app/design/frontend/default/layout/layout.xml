@@ -1,41 +1,37 @@
 <?xml version="1.0"?>
 <layout>
-
-  <default>
-  	<section template="1column.phtml" name="page">
-  		<section template="global/head.phtml" name="head">
-			<action addItem="css" file="css/css.css" params="" cond=""/>
-			<action addItem="js" file="js/js.js" params="" cond=""/>
-		</section>
-  		<section template="global/header.phtml" name="header">
-  			<section template="global/messages.phtml" name="messages"/>
-  		</section>
-  		<section template="global/notices.phtml" name="notices"/>
-  		<section template="global/left.phtml" name="left"/>
-  		<section template="global/right.phtml" name="right"/>
-  		<section template="global/footer.phtml" name="footer"/>
-  		<section template="page/index.phtml" name="content"/>
-  	</section>
-  </default>
-
-  <page_view>
-  	<update name="page"><action setTemplate="1column.phtml"/></update>
-  </page_view>
-
-  <page_contact>
-  	<update name="page"><action setTemplate="2column-left.phtml"/></update>
-  </page_contact>
-
-  <users_login>
-
-  </users_login>
-
-  <users_create>
-  
-  </users_create>
-
-  <users_profile>
-   
-  </users_profile>
-
+    <default>
+        <block template="1column.phtml" name="root">
+            <block template="global/head.phtml" name="head">
+                <action addItem="css" file="css/css.css" params="" cond=""/>
+                <action addItem="js" file="js/js.js" params="" cond=""/>
+            </block>
+            <block template="global/header.phtml" name="header">
+                <block template="global/messages.phtml" name="messages"/>
+            </block>
+            <block template="global/notices.phtml" name="notices"/>
+            <block template="global/left.phtml" name="left"/>
+            <block template="global/right.phtml" name="right"/>
+            <block template="global/footer.phtml" name="footer"/>
+            <block template="page/index.phtml" name="content"/>
+        </block>
+    </default>
+    <page_index>
+        <reference name="root">
+            <action setTemplate="1column.phtml"/>
+        </reference>
+    </page_index>
+    <page_view>
+    </page_view>
+    <page_contact>
+        <reference name="root">
+            <action setTemplate="2column-left.phtml"/>
+        </reference>
+    </page_contact>
+    <users_login>
+    </users_login>
+    <users_create>
+    </users_create>
+    <users_profile>
+    </users_profile>
 </layout>

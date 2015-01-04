@@ -6,8 +6,7 @@ Slim-PHP-MVC
 How to use Slim-PHP-MVC
 =======================
 	Download and extract the code into webserver path and Make sure you have write permission for var directory.
-	Load the db dump from app/code/sql into your mysql db and update configuration accordingly. 	
-	Then check in your browser with the web server Path.
+	Check in your browser with the web server Path - the app will ask you to install - setup a db and finish installation.
 
 Features of Slim-PHP-MVC
 =======================
@@ -15,7 +14,7 @@ Features of Slim-PHP-MVC
 	Page wise CSS,JS,HTML minify and combine
 	XML layout based templating
 	Multi theming Support
-	Seprate Admin Handler
+	Separate Admin Handler
 	SEO Friendly URL's/URL rewrite Support
 	
 	Installer script to setup in less than a min.
@@ -24,11 +23,6 @@ Features of Slim-PHP-MVC
 	Contact page built in
 	User Location Finder built in
 	Cache generated for xml layouts,css,js
-	
-	
-Live demo Slim-PHP-MVC
-======================
-	
 	
 TODO
 ====

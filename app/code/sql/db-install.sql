@@ -13,18 +13,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username`     VARCHAR(128)                NOT NULL,
   `email`        VARCHAR(128)                NOT NULL,
   `password`     VARCHAR(128)                NOT NULL,
+  `contact_no`   VARCHAR(16)                 DEFAULT NULL,
   `user_type`    VARCHAR(512) DEFAULT 'USER' NOT NULL
   COMMENT 'ADMIN - Root Admin, USER - Default frontend user',
   `gender`       INT(12)                              DEFAULT NULL,
-  `user_bio`     TEXT,
-  `address`      TEXT,
-  `contact_no`   VARCHAR(16)                          DEFAULT NULL,
+  `user_bio`     TEXT  DEFAULT NULL,
+  `address`      TEXT DEFAULT NULL,
   `photo`        VARCHAR(512)                         DEFAULT '',
   `dob`          DATE                                 DEFAULT NULL,
   `is_active`    INT(1)                               DEFAULT '1'
   COMMENT '0 - Not active, 1 - Active',
-  `created_time` INT(10)                     NOT NULL DEFAULT '0',
-  `last_visit`   INT(10)                     NOT NULL DEFAULT '0',
+  `created_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_visit`  TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)

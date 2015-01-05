@@ -115,12 +115,21 @@ function run()
                         array_shift($urlParams);
                     }
                 }
-            } elseif (!$dbObj->checkUrlRewriteAvailable($__module)) {
-                if (isset($urlParams[0]) && $urlParams[0] != '') {
-                    $__action = $urlParams[0];
-                    array_shift($urlParams);
+            } else {
+                $urlRewriteExist = $dbObj->checkUrlRewriteAvailable($__module);
+                if (!count($urlRewriteExist)) {
+                    if (isset($urlParams[0]) && $urlParams[0] != '') {
+                        $__action = $urlParams[0];
+                        array_shift($urlParams);
+                    } else {
+                        $__action = 'error404';
+                    }
                 } else {
-                    $__action = 'error404';
+                    $__module = $urlRewriteExist[0];
+                    $__action = $urlRewriteExist[1];
+                    array_shift($urlRewriteExist);
+                    array_shift($urlRewriteExist);
+                    $urlParams = array_merge($urlRewriteExist, $urlParams);
                 }
             }
         }
@@ -148,11 +157,10 @@ function run()
                 $__action = "profileview";
                 $__resultData['current_user'] = $userExist;
             } else {
-                $__module = 'error';
-                $_controllerClass = ucfirst($__module);
+                $__module = 'exception';
+                $_controllerClass = ucfirst($__module) . 'Controller';
             }
         }
-
         $app = new $_controllerClass();
         $action = $__action . "Action";
         if (!method_exists($app, $action)) {
@@ -177,8 +185,7 @@ function run()
         $app->setBodyClass($handler);
         $app->addHandle($handler);
         $app->$action();
-    }
-    else {
+    } else {
         $__module = 'install';
         $__action = 'setup';
         $installer = new Installer();

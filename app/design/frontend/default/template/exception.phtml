@@ -1,11 +1,11 @@
 <?php
-
+if(($msg = $this->getData('msg') ) == '') {
+    $msg = 'Something Went wrong';
+}
 ?>
-    <title>Something Went wrong</title>
-<?php echo $this->getChildHtml('content') ?>
-
-    Something Went wrong, <a href="<?php echo $this->getBaseUrl(); ?>">Go Back</a>.
-
+<title>Something Went wrong</title>
 <?php
-Core::printAppFilesStack();
+echo $msg;
 ?>
+<br/>
+<a href="<?php echo $this->getBaseUrl(); ?>">Go Back</a>.

@@ -4,7 +4,7 @@
         <div class='login_box fl cb form-signin'>
             <p class="signin">EMS - Please Sign In</p>
 
-            <form id="login_form" class="" action="<?php echo $app->getBaseUrl(); ?>users/login/" method="post"
+            <form id="login_form" class="" action="<?php echo $this->getBaseUrl(); ?>users/login/" method="post"
                   enctype="multipart/form-data">
                 <div class="input-group">
                     <span class="input-group-addon  input_img_icon"><i class="icon-envelope"></i></span>
@@ -31,7 +31,7 @@
                                 class="icon-remove"></i></button>
                         <h4 class="modal-title">Reset Password</h4>
                     </div>
-                    <form id="frgtpswd_form" action="<?php echo $app->getBaseUrl(); ?>users/forgotpassword/"
+                    <form id="frgtpswd_form" action="<?php echo $this->getBaseUrl(); ?>users/forgotpassword/"
                           method="post">
                         <div class="modal-body">
                             <div class="form-group">

@@ -6,7 +6,6 @@ try {
 
 
 SQLTEXT;
-
     //$installer->run($sql);
 } catch (Exception $e) {
     $installer->log($e->getMessage());

@@ -1,3 +1,27 @@
-<div class="messages welcome_note">
+<button type="button" class="btn btn-primary first-time-alert no-display" data-toggle="modal"
+        data-target=".bs-example-modal-lg">
     First Time welcome Note
+</button>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span
+                        aria-hidden="true">×</span></button>
+                <h4 id="myLargeModalLabel" class="modal-title">First Time welcome Note</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        if (jQuery.cookie("first-time-alert") != "1") {
+            jQuery('.first-time-alert').trigger('click');
+            jQuery.cookie("first-time-alert", "1", {expires: 7});
+        }
+    });
+</script>

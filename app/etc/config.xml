@@ -9,7 +9,7 @@
     <default>
         <area>frontend</area>
         <enable_email>1</enable_email>
-        <print_execution_order>0</print_execution_order>
+        <print_execution_order>1</print_execution_order>
         <site_title>Slim PHP MVC framework</site_title>
         <site_meta_keywords>Slim PHP MVC framework</site_meta_keywords>
         <site_meta_description>Slim PHP MVC framework</site_meta_description>

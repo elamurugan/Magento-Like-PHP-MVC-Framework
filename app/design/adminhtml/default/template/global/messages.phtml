@@ -1,10 +1,12 @@
 <?php
 if ($errorMessages = parent::getSession('err_message')) {
-    echo '<div class="container message_text err_message">' . $errorMessages . '</div>';
+    echo '<div class="container alert alert-danger " role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' . $errorMessages . '</div>';
     parent::setSession('err_message');
 }
 if ($successMessages = parent::getSession('suc_message')) {
-    echo '<div class="container message_text suc_message">' . $successMessages . '</div>';
+    echo '<div class="container alert alert-success " role="alert">
+        <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>' . $successMessages . '</div>';
     parent::setSession('suc_message');
 }
 ?>

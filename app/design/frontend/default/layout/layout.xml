@@ -9,6 +9,7 @@
                 <action addItem="css" file="css/custom.css"/>
                 <action addItem="js" file="js/lib/jquery-1.9.1.min.js"/>
                 <action addItem="js" file="js/lib/bootstrap.js"/>
+                <action addItem="js" file="js/lib/jquery.cookie.js"/>
                 <action addItem="js" file="js/scripts.js"/>
             </block>
             <block template="global/header.phtml" name="header">
@@ -24,7 +25,7 @@
     <page_index>
         <reference name="root">
             <action setTemplate="1column.phtml"/>
-            <block template="global/ga.phtml" name="ga" toHtml="true" />
+            <block template="global/ga.phtml" name="ga" toHtml="true"/>
             <block template="global/welcome_note.phtml" name="welcome_note" toHtml="true"/>
         </reference>
         <reference name="content">
@@ -34,7 +35,6 @@
             <action addItem="css" file="css/page.css" params="" cond=""/>
         </reference>
     </page_index>
-
     <page_view>
         <reference name="content">
             <action setTemplate="page/view.phtml"/>
@@ -48,11 +48,6 @@
             <action setTemplate="page/contact.phtml"/>
         </reference>
     </page_contact>
-    <page_error404>
-        <reference name="content">
-            <action setTemplate="global/error_404.phtml"/>
-        </reference>
-    </page_error404>
     <users_login>
         <reference name="content">
             <action setTemplate="users/login.phtml"/>
@@ -73,4 +68,18 @@
             <action setTemplate="install.phtml"/>
         </reference>
     </install_setup>
+
+    <page_error404>
+        <reference name="content">
+            <action setTemplate="global/error_404.phtml"/>
+        </reference>
+    </page_error404>
+    <exception_error404>
+        <reference name="root">
+            <action setTemplate="exception.phtml"/>
+        </reference>
+        <reference name="content">
+            <action setTemplate="global/error_404.phtml"/>
+        </reference>
+    </exception_error404>
 </layout>

@@ -22,7 +22,9 @@
 .cr {
     clear: right;
 }
-
+.no-display{
+    display:none;
+}
 .fl {
     float: left;
 }

@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `{{$tablePrefix}}users` (
   `username` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `user_type` varchar(512)  DEFAULT 'USER' NOT NULL 'ADMIN - Root Admin, USER - Default frontend user',
+  `user_type` varchar(512)  DEFAULT 'USER' NOT NULL COMMENT 'ADMIN - Root Admin, USER - Default frontend user',
   `gender` int(12) DEFAULT NULL,
   `user_bio` text,
   `address` text,
@@ -54,6 +54,21 @@ CREATE TABLE IF NOT EXISTS `{{$tablePrefix}}url_rewrites` (
   `description` varchar(255) DEFAULT NULL COMMENT 'Deascription',
   PRIMARY KEY (`url_rewrite_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Url Rewrites' AUTO_INCREMENT=1 ;
+
+
+INSERT INTO `{{$tablePrefix}}config` (`id`, `path`, `value`) VALUES
+  (3, 'site_title', 'Slim MVC Framework'),
+  (4, 'site_meta_description', 'Slim MVC Framework'),
+  (4, 'site_meta_keywords', 'Slim MVC Framework'),
+  (5, 'js_compress', '1'),
+  (6, 'css_compress', '1');
+
+INSERT INTO `{{$tablePrefix}}cms_pages` (`page_id`, `title`, `root_template`, `meta_keywords`, `meta_description`, `identifier`, `content_heading`, `content`, `creation_time`, `update_time`, `is_active`) VALUES
+  (2, 'About Us', '2column-left.phtml', 'About Us', 'About Us', 'about-us', 'About Us', '<div class="page_width">\r\n    <div class=''row''>\r\n        <p>About Us</p>\r\n    </div>\r\n</div>\r\n', '0000-00-00 00:00:00', NULL, 1);
+
+INSERT INTO `{{$tablePrefix}}url_rewrites` (`url_rewrite_id`, `request_path`, `target_path`, `description`) VALUES
+  (1, 'contact-us', 'page/contact', NULL),
+  (2, 'about-us', 'page/view/id/2', NULL);
 
 SQLTEXT;
 

@@ -1,5 +1,19 @@
 <?php
+/**
+ * SLIM_MVC_Framework
+ *
+ * @category  controllers
+ * @package   SLIM_MVC_Framework
+ * @copyright Copyright (c) 2014 (http://www.elamurugan.com/)
+ * @author    Ela <nelamurugan@gmail.com>
+ */
 
+/**
+ * Class SLIM_MVC_Framework
+ *
+ * @category    controllers
+ * @package     SLIM_MVC_Framework
+ */
 class PageController extends Controller
 {
 
@@ -8,7 +22,6 @@ class PageController extends Controller
      */
     public function PageController()
     {
-
     }
 
     /**
@@ -31,21 +44,26 @@ class PageController extends Controller
     /**
      *
      */
-    public function aboutAction()
+    public function viewAction()
     {
-        $this->setPageTitle("About Us");
-        $this->renderHtml();
+        $page = $this->model->getCmsPage($this->getParam("id"));
+
+        if (count($page)) {
+            $this->setPageTitle("About Us");
+            $this->updateTemplate("root", $page['root_template']);
+            $this->renderHtml(array("cms_page" => $page));
+        } else {
+            $this->redirect('page/error404');
+        }
     }
 
     public function contactAction()
     {
-        $this->setPageTitle("Contact Us");
-        $this->renderHtml();
-    }
+        //        $post = $this->getParamsByType("post");
+        //        $content = $this->renderTemplate("emails/contact", array('data' => $post));
+        //        $response = $this->sendEmail($from, $fromname, $to, $toname, $subject, $content);
 
-    public function invalidAction()
-    {
-        $this->setPageTitle("Invalid Page");
+        $this->setPageTitle("Contact Us");
         $this->renderHtml();
     }
 

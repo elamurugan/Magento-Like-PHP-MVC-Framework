@@ -1,3 +1,5 @@
 .idea/
 media/uploads/
-var/cache/
+var/
+!var/.htaccess
+!var/cache/.htaccess

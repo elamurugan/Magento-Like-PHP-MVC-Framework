@@ -19,6 +19,7 @@ class UsersController extends Controller
 
     public function UsersController()
     {
+
     }
 
     public function indexAction()

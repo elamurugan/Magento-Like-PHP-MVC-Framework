@@ -47,10 +47,11 @@ class PageController extends Controller
     public function viewAction()
     {
         $page = $this->model->getCmsPage($this->getParam("id"));
-
         if (count($page)) {
             $this->setPageTitle("About Us");
-            $this->updateTemplate("root", $page['root_template']);
+            if ($page['root_template'] != '') {
+                $this->updateTemplate("root", $page['root_template']);
+            }
             $this->renderHtml(array("cms_page" => $page));
         } else {
             $this->redirect('page/error404');
@@ -60,9 +61,9 @@ class PageController extends Controller
     public function contactAction()
     {
         //        $post = $this->getParamsByType("post");
-        //        $content = $this->renderTemplate("emails/contact", array('data' => $post));
-        //        $response = $this->sendEmail($from, $fromname, $to, $toname, $subject, $content);
-
+        //        $content = $this->renderTemplate("emails/contact.phtml", array('data' => $post));
+        //        $helper = new Helper();
+        //        $response = $helper->sendEmail($from, $fromname, $to, $toname, $subject, $content);
         $this->setPageTitle("Contact Us");
         $this->renderHtml();
     }
@@ -75,6 +76,6 @@ class PageController extends Controller
 
     public function _sampleControllerFunction()
     {
-        debug('Test to show controller level template call');
+        return array("some_key" => 'Test to show controller level template call like to use block logic');
     }
 }

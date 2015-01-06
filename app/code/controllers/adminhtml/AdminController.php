@@ -19,6 +19,7 @@ class AdminController extends Controller
 
     public function AdminController()
     {
+        $this->setPageTitle("Admin");
     }
 
     public function dashboardAction()
@@ -48,34 +49,48 @@ class AdminController extends Controller
             }
             return;
         }
+        $this->setPageTitle("Admin");
         $this->renderHtml(array());
     }
-    
+
     public function forget_passwordAction()
     {
+        $this->setPageTitle("Admin");
         $this->renderHtml(array());
     }
 
     public function accountAction()
     {
-        if ($_POST) {
+        if (!$this->model->isUserLoggedIn()) {
+            $this->redirect('admin/login');
+            return;
+        } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->update_user_data($postParams);
             $this->setSession($response['type'], $response['msg']);
             $this->redirect("admin/account");
             return;
         }
+        $this->setPageTitle("My Account");
         $this->renderHtml(array());
     }
 
     public function usersAction()
     {
+        if (!$this->model->isUserLoggedIn()) {
+            $this->redirect('admin/login');
+            return;
+        }
+        $this->setPageTitle("Users List");
         $this->renderHtml(array());
     }
 
     public function edit_usersAction()
     {
-        if ($_POST) {
+        if (!$this->model->isUserLoggedIn()) {
+            $this->redirect('admin/login');
+            return;
+        } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->update_user_data($postParams);
             $this->setSession($response['type'], $response['msg']);
@@ -84,12 +99,24 @@ class AdminController extends Controller
         }
         $id = $this->getParam('id');
         $current_user = $this->model->getCollection('users', array(), array('id' => $id));
+        $this->setPageTitle("Admin");
         $this->renderHtml(array("current_user" => $current_user[0]));
     }
 
     public function systemAction()
     {
+        if (!$this->model->isUserLoggedIn()) {
+            $this->redirect('admin/login');
+            return;
+        }
+        $this->setPageTitle("System Config");
         $this->renderHtml(array());
+    }
+
+    public function clearcacheAction()
+    {
+        $this->clearCssJsCache('adminhtml');
+        $this->redirect('admin/dashboard');
     }
 
     public function logoutAction()

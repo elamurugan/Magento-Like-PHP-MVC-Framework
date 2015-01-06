@@ -38,6 +38,7 @@
             <action setTemplate="admin/login.phtml"/>
         </reference>
     </admin_forget_password>
+
     <admin_dashboard>
         <reference name="content">
             <action setTemplate="admin/dashboard.phtml"/>
@@ -63,4 +64,18 @@
             <action setTemplate="admin/system.phtml"/>
         </reference>
     </admin_system>
+
+    <page_error404>
+        <reference name="content">
+            <action setTemplate="global/error_404.phtml"/>
+        </reference>
+    </page_error404>
+    <exception_error404>
+        <reference name="root">
+            <action setTemplate="exception.phtml"/>
+        </reference>
+        <reference name="content">
+            <action setTemplate="global/error_404.phtml"/>
+        </reference>
+    </exception_error404>
 </layout>

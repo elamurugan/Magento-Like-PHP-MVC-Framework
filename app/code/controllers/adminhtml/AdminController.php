@@ -50,6 +50,11 @@ class AdminController extends Controller
         }
         $this->renderHtml(array());
     }
+    
+    public function forget_passwordAction()
+    {
+        $this->renderHtml(array());
+    }
 
     public function accountAction()
     {

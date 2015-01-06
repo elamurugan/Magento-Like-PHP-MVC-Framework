@@ -19,7 +19,6 @@ class UsersController extends Controller
 
     public function UsersController()
     {
-
     }
 
     public function indexAction()
@@ -42,11 +41,11 @@ class UsersController extends Controller
             $response = $this->model->login($postParams);
             if ($response && count($response)) {
                 $this->setSession("user", $response);
-                $this->setSession('suc_message', "You logged in successfully");
+                $this->setSession('suc_message', "Welcome Back, ".ucfirst($response['username']).".. You logged in successfully..!");
                 $this->redirect('users/profile');
             } else {
                 $this->setSession('err_message', 'Wrong user/password');
-                $this->redirect('');
+                $this->redirect('users/login');
             }
             return;
         }
@@ -58,14 +57,25 @@ class UsersController extends Controller
         if (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->create($postParams);
-            $this->setSession($response['type'], $response['msg']);
-            $this->redirect("users/profile");
+			$this->setSession($response['type'], $response['msg']);
+			if($response['type'] == 'err_message'){
+				$this->redirect("users/create");
+			} elseif($response['type'] == 'suc_message') {
+				$this->redirect("users/login");
+			} else {
+				$this->redirect("users/create");
+			}            
             return;
         }
         $this->renderHtml();
     }
 
-    public function profileAction()
+	public function forget_passwordAction()
+    {
+		$this->renderHtml(array());
+    }
+
+	public function profileAction()
     {
         if ($this->model->isUserLoggedIn()) {
             $this->renderHtml(array());
@@ -82,6 +92,6 @@ class UsersController extends Controller
     public function logoutAction()
     {
         $this->resetApp();
-        $this->redirect("");
+        $this->redirect("users/login");
     }
 }

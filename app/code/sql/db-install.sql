@@ -13,18 +13,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username`     VARCHAR(128)                NOT NULL,
   `email`        VARCHAR(128)                NOT NULL,
   `password`     VARCHAR(128)                NOT NULL,
-  `contact_no`   VARCHAR(16)                 DEFAULT NULL,
   `user_type`    VARCHAR(512) DEFAULT 'USER' NOT NULL
   COMMENT 'ADMIN - Root Admin, USER - Default frontend user',
   `gender`       INT(12)                              DEFAULT NULL,
-  `user_bio`     TEXT  DEFAULT NULL,
-  `address`      TEXT DEFAULT NULL,
+  `user_bio`     TEXT,
+  `address`      TEXT,
+  `contact_no`   VARCHAR(16)                          DEFAULT NULL,
   `photo`        VARCHAR(512)                         DEFAULT '',
   `dob`          DATE                                 DEFAULT NULL,
   `is_active`    INT(1)                               DEFAULT '1'
   COMMENT '0 - Not active, 1 - Active',
-  `created_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_visit`  TIMESTAMP NULL DEFAULT NULL,
+  `created_time` DATETIME()                     DEFAULT NULL,
+  `last_visit`   DATETIME()                     DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
@@ -76,11 +76,11 @@ CREATE TABLE IF NOT EXISTS `url_rewrites` (
   AUTO_INCREMENT =1;
 
 INSERT INTO `config` (`id`, `path`, `value`) VALUES
-  (3, 'site_title', 'Slim MVC Framework'),
-  (4, 'site_meta_description', 'Slim MVC Framework'),
-  (4, 'site_meta_keywords', 'Slim MVC Framework'),
-  (5, 'js_compress', '1'),
-  (6, 'css_compress', '1');
+  (1, 'site_title', 'Slim MVC Framework'),
+  (2, 'site_meta_description', 'Slim MVC Framework'),
+  (3, 'site_meta_keywords', 'Slim MVC Framework'),
+  (4, 'js_compress', '1'),
+  (5, 'css_compress', '1');
 
 INSERT INTO `cms_pages` (`page_id`, `title`, `root_template`, `meta_keywords`, `meta_description`, `identifier`, `content_heading`, `content`, `creation_time`, `update_time`, `is_active`)
 VALUES
@@ -92,3 +92,4 @@ INSERT INTO `url_rewrites` (`url_rewrite_id`, `request_path`, `target_path`, `de
   (1, 'contact-us', 'page/contact', NULL),
   (2, 'about-us', 'page/view/id/2', NULL);
 
+ALTER TABLE `users` ADD `is_root_admin` INT(10) NULL DEFAULT '0' COMMENT '0 - No, 1 -Yes' ;

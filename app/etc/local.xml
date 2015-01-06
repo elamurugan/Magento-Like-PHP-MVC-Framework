@@ -3,8 +3,8 @@
     <db>
         <host>localhost</host>
         <user>root</user>
-        <password></password>
-        <db_name>sample_db</db_name>
+        <password>247@sqlservice</password>
+        <db_name>dev_mage_framework</db_name>
         <table_prefix></table_prefix>
     </db>
     <admin>

@@ -33,13 +33,22 @@ TODO
 	setData,getData to sent data to template  -  Have to be optimized
 
 
-	Admin/frontend login, account create
-    Admin System config - like enable/disable [cache, compress js, css, html], site settings
+	Install in separate file -> install.php with upgrade links -> Check for db upgrade
+	Admin System config - enable/disable [cache, compress js, css, html], site settings
 	Admin My account page
-	Admin User Grid with paginations
-	Admin CMS tables/pages
-    Frontend contact form with emailing
-    Install in separate file -> install.php with upgrade links -> Check for db upgrade
 	Separate Cache and workout fully functional caching solution
+	Admin User Grid with paginations
+	Admin CMS tables/pages with block/phtml file,variables including
 	Add commenting, documentation
 	Add Location Based messaging
+    Find way for collection, delete, update conditions with and , or combination
+
+
+	Doc:
+
+	$qry = "SELECT * FROM `{$this->getTable("cms_pages")}` where page_id = '$id'";
+
+	getCollection
+	insert
+	update
+	delete

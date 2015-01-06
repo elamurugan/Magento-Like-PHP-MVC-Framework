@@ -60,7 +60,7 @@ class PageController extends Controller
     public function contactAction()
     {
         //        $post = $this->getParamsByType("post");
-        //        $content = $this->renderTemplate("emails/contact.phtml", array('data' => $post));
+        //        $content = $this->renderTemplate("emails/contact", array('data' => $post));
         //        $response = $this->sendEmail($from, $fromname, $to, $toname, $subject, $content);
 
         $this->setPageTitle("Contact Us");

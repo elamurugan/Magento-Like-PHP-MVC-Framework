@@ -4,6 +4,7 @@
         <block template="1column.phtml" name="root">
             <block template="global/head.phtml" name="head">
                 <action addItem="css" file="css/bootstrap.css" params="" cond=""/>
+				<action addItem="css" file="css/bootstrap-theme.min.css"/>
                 <action addItem="css" file="css/dropzone.css"/>
                 <action addItem="css" file="css/jquery-te-1.4.0.css"/>
                 <action addItem="css" file="css/custom.css"/>
@@ -15,11 +16,11 @@
             <block template="global/header.phtml" name="header">
                 <block template="global/messages.phtml" name="messages"/>
             </block>
-            <block template="global/notices.phtml" name="notices"/>
+          <!--  <block template="global/notices.phtml" name="notices"/> -->
             <block template="global/left.phtml" name="left"/>
             <block template="global/right.phtml" name="right"/>
             <block template="global/footer.phtml" name="footer"/>
-            <block template="page/index.phtml" name="content"/>
+            <block template="page/default.phtml" name="content"/>
         </block>
     </default>
     <page_index>
@@ -58,11 +59,21 @@
             <action setTemplate="users/create.phtml"/>
         </reference>
     </users_create>
+	 <users_forget_password>
+        <reference name="content">
+            <action setTemplate="users/forget_password.phtml"/>
+        </reference>
+    </users_forget_password>
     <users_profile>
         <reference name="content">
             <action setTemplate="users/profile.phtml"/>
         </reference>
     </users_profile>
+	<users_profileview>
+        <reference name="content">
+            <action setTemplate="users/profileview.phtml"/>
+        </reference>
+    </users_profileview>
     <install_setup>
         <reference name="root">
             <action setTemplate="install.phtml"/>

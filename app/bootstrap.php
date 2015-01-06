@@ -18,7 +18,7 @@ define('_DEBUG_MODE', true);
 
 function debug($data, $die = 0, $option = 1)
 {
-    echo "<br/><pre style='padding:4px 5px;background: none repeat scroll 0 0 #303030; clear: both;color: #FFFFFF;float: left;font-family: Times New Roman;text-align: left;font-size:15px;'>";
+    echo "<br/><pre style='padding:4px 5px;background: none repeat scroll 0 0 #3f633f; clear: both;color: #FFFFFF;float: left;font-family: Times New Roman;text-align: left;font-size:15px;'>";
     if ($option == 0) {
         var_dump($data);
     } else {
@@ -68,8 +68,8 @@ function slimMVCAutoloader($className)
         include_once _APPDIR . "/code/models/" . $className . ".php";
     } else {
         include_once _BASEDIR . "lib/Error.php";
-        $errorObj = new Error();
-        $errorObj->printError($className);
+        // $errorObj = new Error();
+        // $errorObj->printError($className);
     }
 }
 
@@ -143,6 +143,7 @@ function run()
                 $__appParams['params'][$key] = $val;
             }
         }
+//        debug($__appParams);
     }
     session_start();
     session_name($__area);
@@ -161,6 +162,7 @@ function run()
                 $_controllerClass = ucfirst($__module) . 'Controller';
             }
         }
+//		debug($__resultData);
         $app = new $_controllerClass();
         $action = $__action . "Action";
         if (!method_exists($app, $action)) {

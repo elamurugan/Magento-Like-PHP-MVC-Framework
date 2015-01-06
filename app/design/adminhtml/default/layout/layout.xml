@@ -3,15 +3,20 @@
     <default>
         <block template="1column.phtml" name="root">
             <block template="global/head.phtml" name="head">
-                <action addItem="css" file="css/bootstrap.css" params="" cond=""/>
+				<action addItem="css" file="css/bootstrap.css" params="" cond=""/>
+				<action addItem="css" file="css/bootstrap-theme.min.css"/>
+                <action addItem="css" file="css/dropzone.css"/>
+                <action addItem="css" file="css/jquery-te-1.4.0.css"/>
                 <action addItem="css" file="css/custom.css"/>
                 <action addItem="js" file="js/lib/jquery-1.9.1.min.js"/>
+                <action addItem="js" file="js/lib/bootstrap.js"/>
+                <action addItem="js" file="js/lib/jquery.cookie.js"/>
                 <action addItem="js" file="js/scripts.js"/>
             </block>
             <block template="global/header.phtml" name="header">
                 <block template="global/messages.phtml" name="messages"/>
             </block>
-            <block template="global/notices.phtml" name="notices"/>
+      <!--  <block template="global/notices.phtml" name="notices"/> -->
             <block template="global/footer.phtml" name="footer"/>
             <block template="admin/dashboard.phtml" name="content"/>
         </block>
@@ -26,4 +31,24 @@
             <action setTemplate="admin/dashboard.phtml"/>
         </reference>
     </admin_dashboard>
+    <admin_account>
+        <reference name="content">
+            <action setTemplate="admin/account.phtml"/>
+        </reference>
+    </admin_account>
+    <admin_users>
+        <reference name="content">
+            <action setTemplate="admin/users.phtml"/>
+        </reference>
+    </admin_users>
+    <admin_edit_users>
+        <reference name="content">
+            <action setTemplate="admin/edit_users.phtml"/>
+        </reference>
+    </admin_edit_users>
+    <admin_system>
+        <reference name="content">
+            <action setTemplate="admin/system.phtml"/>
+        </reference>
+    </admin_system>
 </layout>

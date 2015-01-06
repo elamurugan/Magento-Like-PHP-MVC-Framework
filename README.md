@@ -38,6 +38,17 @@ TODO
 	Admin My account page
 	Separate Cache and workout fully functional caching solution
 	Admin User Grid with paginations
-	Admin CMS tables/pages
+	Admin CMS tables/pages with block/phtml file,variables including
 	Add commenting, documentation
 	Add Location Based messaging
+    Find way for collection, delete, update conditions with and , or combination
+
+
+	Doc:
+
+	$qry = "SELECT * FROM `{$this->getTable("cms_pages")}` where page_id = '$id'";
+
+	getCollection
+	insert
+	update
+	delete

@@ -18,17 +18,17 @@ class Page extends Model
 {
     public function Page()
     {
+
     }
 
     public function getUsers()
     {
-        $qry = "SELECT * FROM `{$this->getTable("users")}`";
-        return $result = $this->fetch($qry);
+        return $this->getCollection("users");
     }
 
     public function getCmsPage($id = 0)
     {
-        $qry = "SELECT * FROM `{$this->getTable("cms_pages")}` where page_id = '$id'";
-        return $result = $this->fetchFirstRow($qry);
+        $this->getCollection("cms_pages", array("*"), array("page_id" => $id));
+        return $this->getFirstItem();
     }
 }

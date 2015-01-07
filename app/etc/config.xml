@@ -8,8 +8,12 @@
     </path>
     <default>
         <area>frontend</area>
+        <time_zone>Asia/Kolkata</time_zone>
         <enable_email>1</enable_email>
         <print_execution_order>0</print_execution_order>
+        <js_compress>0</js_compress>
+        <css_compress>0</css_compress>
+        <html_compress>0</html_compress>
         <site_title>Slim PHP MVC framework</site_title>
         <site_meta_keywords>Slim PHP MVC framework</site_meta_keywords>
         <site_meta_description>Slim PHP MVC framework</site_meta_description>
@@ -25,7 +29,6 @@
             <function>dashboard</function>
             <area>adminhtml</area>
         </adminhtml>
-        <time_zone>Asia/Kolkata</time_zone>
     </default>
     <adminhtml>
         <layout>layout.xml</layout>

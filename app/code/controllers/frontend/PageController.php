@@ -60,10 +60,24 @@ class PageController extends Controller
 
     public function contactAction()
     {
-        //        $post = $this->getParamsByType("post");
-        //        $content = $this->renderTemplate("emails/contact.phtml", array('data' => $post));
-        //        $helper = new Helper();
-        //        $response = $helper->sendEmail($from, $fromname, $to, $toname, $subject, $content);
+        if(isset($_POST)){
+            $params = $this->getParamsByType("post");
+            $content = $this->renderTemplate("emails/contact.phtml", array('data' => $params));
+            $helper = new Helper();
+            $configdata = $this->model->getConfigData();
+            $from      = 'from@example.com';
+            $fromname  = 'Framework';
+            $to        = $configdata['contact_email'];
+            $toname    = $configdata['contact_name'];
+            $subject   = 'New Message from '.$configdata['site_title'];
+            $response  = $helper->sendEmail($from, $fromname, $to, $toname, $subject, $content);
+
+            $msgs['type'] = 'suc_message';
+            $msgs['msg'] = 'We Received your Message..! We will get back to you Soon..!';
+            $this->setSession($msgs['type'], $msgs['msg']);
+            $this->redirect('page/contact');
+        }
+
         $this->setPageTitle("Contact Us");
         $this->renderHtml();
     }

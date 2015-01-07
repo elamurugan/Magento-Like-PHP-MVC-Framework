@@ -108,15 +108,30 @@ class AdminController extends Controller
         if (!$this->model->isUserLoggedIn()) {
             $this->redirect('admin/login');
             return;
+        }elseif (isset($_POST)) {
+            $postParams = $this->getParamsByType('post');
+            $response = $this->model->update_config_data($postParams);
+            $this->setSession($response['type'], $response['msg']);
+            $this->redirect("admin/system");
+            return;
         }
+        $user_config = $this->model->getCollection('config');
         $this->setPageTitle("System Config");
-        $this->renderHtml(array());
+        $this->renderHtml(array("user_config" => $user_config));
     }
 
     public function clearcacheAction()
     {
-        $this->clearCssJsCache('adminhtml');
-        $this->redirect('admin/dashboard');
+        $this->clearCssJsCache($this->getParam('option'));
+        $msgs['type'] = 'suc_message';
+        if($this->getParam('option') == 'adminhtml'){
+            $msgs['msg'] = 'ADMIN Cache Cleared Successfully..!';
+        } else {
+            $msgs['msg'] = 'FRONTEND Cache Cleared Successfully..!';
+        }
+
+        $this->setSession($msgs['type'], $msgs['msg']);
+        $this->redirect('admin/system');
     }
 
     public function logoutAction()

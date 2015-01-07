@@ -63,32 +63,18 @@ class Admin extends Model
 
     public function update_config_data($params)
     {
-        extract($params);
-        $data = array("username" => $username, "name" => $name);
-        if (isset($password) && $password != '') {
-            $password         = md5($params['password']);
-            if (isset($confirm_password) && $confirm_password != '') {
-                $confirm_password = md5($params['confirm_password']);
-                if ($password == $confirm_password) {
-                    $data["password"] = $password;
-                } else {
-                    $msgs['type'] = 'err_message';
-                    $msgs['msg'] = 'Passwords Do Not Match..!';
-                    return $msgs;
-                }
-            } else {
-                $data["password"] = $password;
+        $user_config = array_keys($this->getConfigData());
+
+        foreach($params as $key=>$value){
+            if(in_array($key, $user_config)){
+                $this->updateConfigVariable($key, $value);
+            }else{
+                $this->createConfigVariable($key, $value);
             }
         }
-        if (isset($user_type) && $user_type != '') {
-            $data["user_type"] = $user_type;
-        }
-        if (isset($is_active) && $is_active != '') {
-            $data["is_active"] = $is_active;
-        }
-        $this->update("users", $data, array("id" => $id));
+
         $msgs['type'] = 'suc_message';
-        $msgs['msg'] = 'USER ID: '.$id.', Profile Updated Successfully..!';
+        $msgs['msg'] = 'Configuration Updated Successfully..!';
 
         return $msgs;
     }

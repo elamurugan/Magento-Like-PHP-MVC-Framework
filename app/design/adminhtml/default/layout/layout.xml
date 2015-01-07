@@ -78,4 +78,20 @@
             <action setTemplate="global/error_404.phtml"/>
         </reference>
     </exception_error404>
+
+    <cms_index>
+        <reference name="content">
+            <action setTemplate="cms/index.phtml"/>
+        </reference>
+    </cms_index>
+    <cms_editpage>
+        <reference name="content">
+            <action setTemplate="cms/editpage.phtml"/>
+        </reference>
+    </cms_editpage>
+    <cms_createpage>
+        <reference name="content">
+            <action setTemplate="cms/createpage.phtml"/>
+        </reference>
+    </cms_createpage>
 </layout>

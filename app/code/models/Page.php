@@ -26,9 +26,4 @@ class Page extends Model
         return $this->getCollection("users");
     }
 
-    public function getCmsPage($id = 0)
-    {
-        $this->getCollection("cms_pages", array("*"), array("page_id" => $id));
-        return $this->getFirstItem();
-    }
 }

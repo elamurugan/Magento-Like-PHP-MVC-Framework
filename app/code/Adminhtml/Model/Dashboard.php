@@ -14,14 +14,14 @@
  * @category    controllers
  * @package     SLIM_MVC_Framework
  */
-class Admin extends Model
+class Adminhtml_Model_Dashboard extends Model
 {
 
     public function login($params)
     {
         $email = $params['email'];
         $password = md5($params['password']);
-        $qry = "SELECT * FROM `{$this->getTable("users")}`  WHERE `email` = '$email' AND password = '$password';";
+        $qry = "SELECT * FROM `{$this->getTable("users")}`  WHERE (`email` = '$email' or `username` = '$email')AND password = '$password';";
         $response = $this->fetch($qry);
         if ($response) {
             return $response[0];
@@ -34,7 +34,7 @@ class Admin extends Model
         extract($params);
         $data = array("username" => $username, "name" => $name);
         if (isset($password) && $password != '') {
-            $password         = md5($params['password']);
+            $password = md5($params['password']);
             if (isset($confirm_password) && $confirm_password != '') {
                 $confirm_password = md5($params['confirm_password']);
                 if ($password == $confirm_password) {
@@ -56,8 +56,7 @@ class Admin extends Model
         }
         $this->update("users", $data, array("id" => $id));
         $msgs['type'] = 'suc_message';
-        $msgs['msg'] = 'USER ID: '.$id.', Profile Updated Successfully..!';
-
+        $msgs['msg'] = 'USER ID: ' . $id . ', Profile Updated Successfully..!';
         return $msgs;
     }
 
@@ -65,10 +64,10 @@ class Admin extends Model
     {
         $user_config = array_keys($this->getConfigData());
 
-        foreach($params as $key=>$value){
-            if(in_array($key, $user_config)){
+        foreach ($params as $key => $value) {
+            if (in_array($key, $user_config)) {
                 $this->updateConfigVariable($key, $value);
-            }else{
+            } else {
                 $this->createConfigVariable($key, $value);
             }
         }

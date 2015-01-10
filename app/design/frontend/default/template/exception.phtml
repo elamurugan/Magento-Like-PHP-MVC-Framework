@@ -1,5 +1,5 @@
 <?php
-if(($msg = $this->getData('msg') ) == '') {
+if (($msg = $this->getData('msg')) == ''  && ($msg = Slim::registry('error_page_info')) == '') {
     $msg = 'Something Went wrong';
 }
 ?>
@@ -8,4 +8,4 @@ if(($msg = $this->getData('msg') ) == '') {
 echo $msg;
 ?>
 <br/>
-<a href="<?php echo $this->getBaseUrl(); ?>">Go Back</a>.
+<a href="<?php echo _BASEURL; ?>">Go Back</a>.

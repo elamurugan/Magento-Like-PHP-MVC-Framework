@@ -1,0 +1,101 @@
+<?php
+$current_user = $this->getData("current_user");
+//debug($current_user);
+?>
+<div class="container">
+    <h1>Edit User Profile</h1>
+
+    <div class="fr" style="margin-top: -30px;">
+        <a href="<?php echo $this->getBaseUrl(); ?>dashboard/users"><i class="glyphicon glyphicon-chevron-left"></i> Back to
+            Users List</a>
+    </div>
+
+    <hr>
+    <div class="row">
+        <!-- edit form column -->
+        <div class="col-md-9 personal-info">
+            <div class="alert alert-info alert-dismissable dn">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                This is an <strong>.alert</strong>. Use this to show important messages to the user.
+            </div>
+            <h3>User Info</h3>
+
+            <form class="form-horizontal" role="form" action="<?php echo $this->getBaseUrl(); ?>admin/edit_users"
+                  method="POST">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Name:</label>
+
+                    <div class="col-lg-8">
+                        <input class="form-control" value="<?php echo $current_user['name']; ?>" name="name"
+                               type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Username:</label>
+
+                    <div class="col-lg-8">
+                        <input class="form-control" value="<?php echo $current_user['username']; ?>" name="username"
+                               type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+
+                    <div class="col-lg-8">
+                        <input class="form-control" value="<?php echo $current_user['email']; ?>" type="text" disabled>
+                        <input value="<?php echo $current_user['email']; ?>" name="email" type="hidden">
+                        <input value="<?php echo $current_user['id']; ?>" name="id" type="hidden">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">New Password:</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" value="" name="password" type="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="user_type" class="col-md-3 control-label">User Type:</label>
+
+                    <div class="col-md-8">
+                        <select class="form-control" name="user_type">
+                            <?php $user_types = Utils::userTypes();
+                            foreach ($user_types as $key => $user_type) {
+                                ?>
+                                <option value="<?php echo $key; ?>" <?php if ($current_user['user_type'] == $key) {
+                                    echo 'selected';
+                                } ?>><?php echo $user_type; ?> </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="is_active" class="col-md-3 control-label">Is Active:</label>
+
+                    <div class="col-md-8">
+                        <select class="form-control" name="is_active">
+                            <?php $yes_nos = Utils::yesNoOptions();
+                            foreach ($yes_nos as $key => $yes_no) {
+                                ?>
+                                <option value="<?php echo $key; ?>" <?php if ($current_user['is_active'] == $key) {
+                                    echo 'selected';
+                                } ?> ><?php echo $yes_no; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+
+                    <div class="col-md-8">
+                        <input class="btn btn-primary" value="Save Changes" type="submit">
+                        <span></span>
+                        <input class="btn btn-default" value="Cancel" type="reset">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>

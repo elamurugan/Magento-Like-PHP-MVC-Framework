@@ -21,13 +21,11 @@
             <theme>default</theme>
             <module>page</module>
             <function>index</function>
-            <area>frontend</area>
         </frontend>
         <adminhtml>
             <theme>default</theme>
-            <module>admin</module>
-            <function>dashboard</function>
-            <area>adminhtml</area>
+            <module>dashboard</module>
+            <function>index</function>
         </adminhtml>
     </default>
     <adminhtml>

@@ -1,0 +1,40 @@
+<?php
+$users_list = $this->model->getCollection('users',
+                                          array('id', 'name', 'username', 'email', 'user_type', 'is_active', 'last_visit', 'is_root_admin')
+);
+//debug($users_list);
+?>
+<div class="container">
+    <div class="table mt20">
+        <table class="table table-bordered table-striped bs-table">
+            <thead class="alert alert-info">
+            <tr>
+                <th class="tc">USER ID</th>
+                <th class="tc">NAME</th>
+                <th class="tc">USERNAME</th>
+                <th class="tc">EMAIL</th>
+                <th class="tc">USER TYPE</th>
+                <th class="tc">IS ACTIVE</th>
+                <th class="tc">LAST VISITED</th>
+                <th class="tc"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($users_list as $key => $user) { ?>
+                <tr>
+                    <td class="tc"><?php echo $user['id']; ?></td>
+                    <td class="tc"><?php echo $user['name']; ?></td>
+                    <td class="tc"><?php echo $user['username']; ?></td>
+                    <td class="tc"><?php echo $user['email']; ?></td>
+                    <td class="tc"><?php echo $user['user_type']; ?></td>
+                    <td class="tc"><?php echo $user['is_active']; ?></td>
+                    <td class="tc"><?php echo $user['last_visit']; ?></td>
+                    <td class="tc"><?php if ($user['is_root_admin'] != '1') { ?><a
+                            href="<?php echo $this->getBaseUrl(); ?>dashboard/edit_users/id/<?php echo $user['id']; ?>">
+                                Edit</a><?php } ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>

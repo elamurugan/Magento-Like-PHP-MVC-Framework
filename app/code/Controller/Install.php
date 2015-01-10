@@ -14,11 +14,10 @@
  * @category    controllers
  * @package     SLIM_MVC_Framework
  */
-class ExceptionController extends Controller
+class Controller_Install extends Controller
 {
-    public function printError($_className)
+    public function setupAction()
     {
 
-        $this->renderHtml();
     }
 }

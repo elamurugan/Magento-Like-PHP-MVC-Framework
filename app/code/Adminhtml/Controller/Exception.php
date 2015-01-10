@@ -14,7 +14,7 @@
  * @category    controllers
  * @package     SLIM_MVC_Framework
  */
-class ExceptionController extends Controller
+class Adminhtml_Controller_Exception extends Controller
 {
     public function printError($_className)
     {

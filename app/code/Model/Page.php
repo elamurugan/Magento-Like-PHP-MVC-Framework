@@ -14,16 +14,22 @@
  * @category    controllers
  * @package     SLIM_MVC_Framework
  */
-class Page extends Model
+class Model_Page extends Model
 {
-    public function Page()
-    {
-
-    }
 
     public function getUsers()
     {
         return $this->getCollection("users");
     }
 
+    public function getCmsPage($id = 0)
+    {
+//        $cmsPage = array();
+//        $cms = Slim::getModel("model/cms");
+//        $cmsPage = $cms->getCmsPage($id);
+
+        $this->getCollection("cms_pages", array("*"), array("page_id" => $id),array(),array(),true);
+        $cmsPage =  $this->getFirstItem();
+        return $cmsPage;
+    }
 }

@@ -32,17 +32,17 @@ TODO
 	Add URL rewrite  -  Have to be optimized
 	setData,getData to sent data to template  -  Have to be optimized
 
+    Admin System config - enable/disable [cache, compress js, css, html], smtp site settings
+    Admin My account page
+    Admin User Grid with paginations
 
 	Install in separate file -> install.php with upgrade links -> Check for db upgrade
-	Admin System config - enable/disable [cache, compress js, css, html], site settings
-	Admin My account page
 	Separate Cache and workout fully functional caching solution
-	Admin User Grid with paginations
 	Admin CMS tables/pages with block/phtml file,variables including
 	Add commenting, documentation
 	Add Location Based messaging
-    Find way for collection, delete, update conditions with and , or combination
-
+    Add block, getmodel,helper logics.
+    Config.xml to have smtp and other default settings and Load config form db table
 
 	Doc:
 

@@ -3,8 +3,8 @@
     <default>
         <block template="1column.phtml" name="root">
             <block template="global/head.phtml" name="head">
-				<action addItem="css" file="css/bootstrap.css" params="" cond=""/>
-				<action addItem="css" file="css/bootstrap-theme.min.css"/>
+                <action addItem="css" file="css/bootstrap.css" params="" cond=""/>
+                <action addItem="css" file="css/bootstrap-theme.min.css"/>
                 <action addItem="css" file="css/dropzone.css"/>
                 <action addItem="css" file="css/jquery-te-1.4.0.css"/>
                 <action addItem="css" file="css/custom.css"/>
@@ -17,54 +17,52 @@
             <block template="global/header.phtml" name="header">
                 <block template="global/messages.phtml" name="messages"/>
             </block>
-      <!--  <block template="global/notices.phtml" name="notices"/> -->
+            <block template="global/notices.phtml" name="notices"/>
             <block template="global/footer.phtml" name="footer"/>
-            <block template="admin/default.phtml" name="content"/>
+            <block template="dashboard/default.phtml" name="content"/>
         </block>
     </default>
-    <admin_login>
+    <dashboard_login>
         <reference name="root">
             <action setTemplate="login.phtml"/>
         </reference>
         <reference name="content">
-            <action setTemplate="admin/login.phtml"/>
+            <action setTemplate="dashboard/login.phtml"/>
         </reference>
-    </admin_login>
-    <admin_forget_password>
+    </dashboard_login>
+    <dashboard_forget_password>
         <reference name="root">
             <action setTemplate="login.phtml"/>
         </reference>
         <reference name="content">
-            <action setTemplate="admin/login.phtml"/>
+            <action setTemplate="dashboard/login.phtml"/>
         </reference>
-    </admin_forget_password>
-
-    <admin_dashboard>
+    </dashboard_forget_password>
+    <dashboard_index>
         <reference name="content">
-            <action setTemplate="admin/dashboard.phtml"/>
+            <action setTemplate="dashboard/dashboard.phtml"/>
         </reference>
-    </admin_dashboard>
-    <admin_account>
+    </dashboard_index>
+    <dashboard_account>
         <reference name="content">
-            <action setTemplate="admin/account.phtml"/>
+            <action setTemplate="dashboard/account.phtml"/>
         </reference>
-    </admin_account>
-    <admin_users>
+    </dashboard_account>
+    <dashboard_users>
         <reference name="content">
-            <action setTemplate="admin/users.phtml"/>
+            <action setTemplate="dashboard/users.phtml"/>
         </reference>
-    </admin_users>
-    <admin_edit_users>
+    </dashboard_users>
+    <dashboard_edit_users>
         <reference name="content">
-            <action setTemplate="admin/edit_users.phtml"/>
+            <action setTemplate="dashboard/edit_users.phtml"/>
         </reference>
-    </admin_edit_users>
-    <admin_system>
+    </dashboard_edit_users>
+    <dashboard_system>
         <reference name="content">
-            <action setTemplate="admin/system.phtml"/>
+            <action setTemplate="dashboard/system.phtml"/>
         </reference>
-    </admin_system>
-
+    </dashboard_system>
     <page_error404>
         <reference name="content">
             <action setTemplate="global/error_404.phtml"/>
@@ -78,7 +76,6 @@
             <action setTemplate="global/error_404.phtml"/>
         </reference>
     </exception_error404>
-
     <cms_index>
         <reference name="content">
             <action setTemplate="cms/index.phtml"/>

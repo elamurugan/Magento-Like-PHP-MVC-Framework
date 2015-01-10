@@ -167,9 +167,13 @@ body {
     width: 52%;
 }
 
-.layout_2column-left .main {
+.col2-left-layout .main {
     width: 75%;
 }
 .main-container{
     min-height:600px;
+}
+.main {
+    margin: 0 auto;
+    width: 1280px;
 }

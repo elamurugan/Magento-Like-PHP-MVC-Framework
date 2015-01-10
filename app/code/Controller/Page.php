@@ -14,7 +14,7 @@
  * @category    controllers
  * @package     SLIM_MVC_Framework
  */
-class PageController extends Controller
+class Controller_Page extends Controller
 {
 
     /**
@@ -22,6 +22,7 @@ class PageController extends Controller
      */
     public function PageController()
     {
+
     }
 
     /**
@@ -36,7 +37,7 @@ class PageController extends Controller
         // $this->getParam("id");// To get id param
         // $this->model->getUsers();// To call Model file
         //parent::addJs("js/contacts.js");// To add Js from controller
-        $this->setBodyClass("fixed");// To set Function specific Body class
+        //$this->setBodyClass("fixed");// To set Function specific Body class
         $this->setPageTitle("Home");
         $this->renderHtml(array("welcome_msg" => "Welcome Back"));
     }
@@ -48,9 +49,9 @@ class PageController extends Controller
     {
         $page = $this->model->getCmsPage($this->getParam("id"));
         if (count($page)) {
-            $this->setPageTitle("About Us");
-            if ($page['root_template'] != '') {
-                $this->updateTemplate("root", $page['root_template']);
+            $this->setPageTitle($page->title);
+            if ($page->root_template != '') {
+                $this->updateTemplate("root", $page->root_template);
             }
             $this->renderHtml(array("cms_page" => $page));
         } else {
@@ -60,17 +61,17 @@ class PageController extends Controller
 
     public function contactAction()
     {
-        if(isset($_POST)){
+        if (isset($_POST)) {
             $params = $this->getParamsByType("post");
             $content = $this->renderTemplate("emails/contact.phtml", array('data' => $params));
             $helper = new Helper();
             $configdata = $this->model->getConfigData();
-            $from      = 'from@example.com';
-            $fromname  = 'Framework';
-            $to        = $configdata['contact_email'];
-            $toname    = $configdata['contact_name'];
-            $subject   = 'New Message from '.$configdata['site_title'];
-            $response  = $helper->sendEmail($from, $fromname, $to, $toname, $subject, $content);
+            $from = 'from@example.com';
+            $fromname = 'Framework';
+            $to = $configdata['contact_email'];
+            $toname = $configdata['contact_name'];
+            $subject = 'New Message from ' . $configdata['site_title'];
+            $response = $helper->sendEmail($from, $fromname, $to, $toname, $subject, $content);
 
             $msgs['type'] = 'suc_message';
             $msgs['msg'] = 'We Received your Message..! We will get back to you Soon..!';

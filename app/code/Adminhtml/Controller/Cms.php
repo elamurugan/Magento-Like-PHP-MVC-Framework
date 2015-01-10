@@ -14,7 +14,7 @@
  * @category    controllers
  * @package     SLIM_MVC_Framework
  */
-class CmsController extends Controller
+class Adminhtml_Controller_Cms extends Controller
 {
 
     public function CmsController()
@@ -32,8 +32,8 @@ class CmsController extends Controller
     public function editpageAction()
     {
         $this->setPageTitle("Edit CMS Page");
-        if (!$this->model->isUserLoggedIn()) {
-            $this->redirect('admin/login');
+        if (!$this->model->isAdminLoggedIn()) {
+            $this->redirect('dashboard/login');
             return;
         } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
@@ -45,14 +45,13 @@ class CmsController extends Controller
         $page_id = $this->getParam('id');
         $cms_page_data = $this->model->getCmsPage($page_id);
         $this->renderHtml(array("cms_page_data" => $cms_page_data));
-
     }
 
     public function createpageAction()
     {
         $this->setPageTitle("Create CMS Page");
-        if (!$this->model->isUserLoggedIn()) {
-            $this->redirect('admin/login');
+        if (!$this->model->isAdminLoggedIn()) {
+            $this->redirect('dashboard/login');
             return;
         } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');

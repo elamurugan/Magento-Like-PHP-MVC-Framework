@@ -14,7 +14,7 @@
  * @category    controllers
  * @package     SLIM_MVC_Framework
  */
-class AdminController extends Controller
+class Adminhtml_Controller_Dashboard extends Controller
 {
 
     public function AdminController()
@@ -22,30 +22,30 @@ class AdminController extends Controller
         $this->setPageTitle("Admin");
     }
 
-    public function dashboardAction()
+    public function indexAction()
     {
         $this->setPageTitle("Dashboard");
-        if (!$this->model->isUserLoggedIn()) {
-            $this->redirect('admin/login');
+        if (!$this->model->isAdminLoggedIn()) {
+            $this->redirect('dashboard/login');
         }
         $this->renderHtml(array());
     }
 
     public function loginAction()
     {
-        if ($this->model->isUserLoggedIn()) {
-            $this->redirect('admin/dashboard');
+        if ($this->model->isAdminLoggedIn()) {
+            $this->redirect('dashboard/index');
             return;
         } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->login($postParams);
             if ($response && count($response)) {
-                $this->setSession("user", $response);
+                $this->setSession("admin", $response);
                 $this->setSession('suc_message', "Admin logged in successfully..!");
-                $this->redirect('admin/dashboard');
+                $this->redirect('dashboard/index');
             } else {
                 $this->setSession('err_message', 'Wrong user/password');
-                $this->redirect('admin/login');
+                $this->redirect('dashboard/login');
             }
             return;
         }
@@ -61,14 +61,14 @@ class AdminController extends Controller
 
     public function accountAction()
     {
-        if (!$this->model->isUserLoggedIn()) {
-            $this->redirect('admin/login');
+        if (!$this->model->isAdminLoggedIn()) {
+            $this->redirect('dashboard/login');
             return;
         } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->update_user_data($postParams);
             $this->setSession($response['type'], $response['msg']);
-            $this->redirect("admin/account");
+            $this->redirect("dashboard/account");
             return;
         }
         $this->setPageTitle("My Account");
@@ -77,8 +77,8 @@ class AdminController extends Controller
 
     public function usersAction()
     {
-        if (!$this->model->isUserLoggedIn()) {
-            $this->redirect('admin/login');
+        if (!$this->model->isAdminLoggedIn()) {
+            $this->redirect('dashboard/login');
             return;
         }
         $this->setPageTitle("Users List");
@@ -87,14 +87,14 @@ class AdminController extends Controller
 
     public function edit_usersAction()
     {
-        if (!$this->model->isUserLoggedIn()) {
-            $this->redirect('admin/login');
+        if (!$this->model->isAdminLoggedIn()) {
+            $this->redirect('dashboard/login');
             return;
         } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->update_user_data($postParams);
             $this->setSession($response['type'], $response['msg']);
-            $this->redirect("admin/users");
+            $this->redirect("dashboard/users");
             return;
         }
         $id = $this->getParam('id');
@@ -105,14 +105,14 @@ class AdminController extends Controller
 
     public function systemAction()
     {
-        if (!$this->model->isUserLoggedIn()) {
-            $this->redirect('admin/login');
+        if (!$this->model->isAdminLoggedIn()) {
+            $this->redirect('dashboard/login');
             return;
-        }elseif (isset($_POST)) {
+        } elseif (isset($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->update_config_data($postParams);
             $this->setSession($response['type'], $response['msg']);
-            $this->redirect("admin/system");
+            $this->redirect("dashboard/system");
             return;
         }
         $user_config = $this->model->getCollection('config');
@@ -124,19 +124,18 @@ class AdminController extends Controller
     {
         $this->clearCssJsCache($this->getParam('option'));
         $msgs['type'] = 'suc_message';
-        if($this->getParam('option') == 'adminhtml'){
+        if ($this->getParam('option') == 'adminhtml') {
             $msgs['msg'] = 'ADMIN Cache Cleared Successfully..!';
         } else {
             $msgs['msg'] = 'FRONTEND Cache Cleared Successfully..!';
         }
-
         $this->setSession($msgs['type'], $msgs['msg']);
-        $this->redirect('admin/system');
+        $this->redirect('dashboard/system');
     }
 
     public function logoutAction()
     {
         $this->resetApp();
-        $this->redirect('admin/login');
+        $this->redirect('dashboard/login');
     }
 }

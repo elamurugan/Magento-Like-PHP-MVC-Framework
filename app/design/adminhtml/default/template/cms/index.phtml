@@ -4,35 +4,37 @@ $all_cms_pages = $this->getData('all_cms_pages');
 ?>
 <div class="container">
     <div class="fr mt30 mb10">
-        <a href="<?php echo $this->getBaseUrl(); ?>cms/createpage" class="btn btn-success" ><i class="glyphicon glyphicon-plus"></i> Create New Page</a>
+        <a href="<?php echo $this->getBaseUrl(); ?>cms/createpage" class="btn btn-success"><i
+                class="glyphicon glyphicon-plus"></i> Create New Page</a>
     </div>
     <div class="table mt20 fl">
         <table class="table table-bordered table-striped bs-table">
             <thead class="alert alert-info">
-                <tr>
-                    <th class="tc">PAGE ID</th>
-                    <th class="tc">TITLE</th>
-                    <th class="tc">ROOT TEMPLATE</th>
-                    <th class="tc">IDENTIFIER</th>
-                    <th class="tc">CONTENT HEADING</th>
-                    <th class="tc">IS ACTIVE</th>
-                    <th class="tc">LAST UPDATED</th>
-                    <th class="tc"></th>
-                </tr>
+            <tr>
+                <th class="tc">PAGE ID</th>
+                <th class="tc">TITLE</th>
+                <th class="tc">ROOT TEMPLATE</th>
+                <th class="tc">IDENTIFIER</th>
+                <th class="tc">CONTENT HEADING</th>
+                <th class="tc">IS ACTIVE</th>
+                <th class="tc">LAST UPDATED</th>
+                <th class="tc"></th>
+            </tr>
             </thead>
             <tbody>
-                <?php foreach($all_cms_pages as $key=>$cms_page){?>
-                    <tr>
-                        <td class="tc"><?php echo $cms_page['page_id']; ?></td>
-                        <td class="tc"><?php echo $cms_page['title']; ?></td>
-                        <td class="tc"><?php echo $cms_page['root_template']; ?></td>
-                        <td class="tc"><?php echo $cms_page['identifier']; ?></td>
-                        <td class="tc"><?php echo $cms_page['content_heading']; ?></td>
-                        <td class="tc"><?php echo $cms_page['is_active']; ?></td>
-                        <td class="tc"><?php echo $cms_page['update_time']; ?></td>
-                        <td class="tc"><a href="<?php echo $this->getBaseUrl(); ?>cms/editpage/id/<?php echo $cms_page['page_id']; ?>">Edit</a></td>
-                    </tr>
-                <?php } ?>
+            <?php foreach ($all_cms_pages as $key => $cms_page) { ?>
+                <tr>
+                    <td class="tc"><?php echo $cms_page['page_id']; ?></td>
+                    <td class="tc"><?php echo $cms_page['title']; ?></td>
+                    <td class="tc"><?php echo $cms_page['root_template']; ?></td>
+                    <td class="tc"><?php echo $cms_page['identifier']; ?></td>
+                    <td class="tc"><?php echo $cms_page['content_heading']; ?></td>
+                    <td class="tc"><?php echo $cms_page['is_active']; ?></td>
+                    <td class="tc"><?php echo $cms_page['update_time']; ?></td>
+                    <td class="tc"><a href="<?php echo $this->getBaseUrl(
+                        ); ?>cms/editpage/id/<?php echo $cms_page['page_id']; ?>">Edit</a></td>
+                </tr>
+            <?php } ?>
             </tbody>
         </table>
     </div>

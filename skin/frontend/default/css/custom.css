@@ -155,21 +155,24 @@ body {
     background: url(../images/spriteme.png);
 }
 
-.body .left, .body .right, .body .main {
+ .left, .right, .col-main{
     float: left;
-}
-
-.layout_1column .main {
-    width: 90%;
 }
 
 .layout_3column .main {
     width: 52%;
 }
 
-.layout_2column-left .main {
+.col2-left-layout .col-main {
     width: 75%;
+}
+.col2-left-layout .left {
+    width:21%;
 }
 .main-container{
     min-height:600px;
+}
+.main {
+    margin: 0 auto;
+    width: 1180px;
 }

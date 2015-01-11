@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <layout>
     <default>
-        <block template="1column.phtml" name="root">
-            <block template="global/head.phtml" name="head">
-				<action addItem="css" file="css/bootstrap.css" params="" cond=""/>
-				<action addItem="css" file="css/bootstrap-theme.min.css"/>
+        <block  type="adminhtml_block/template"   template="1column.phtml" name="root">
+            <block  type="adminhtml_block/template"  template="global/head.phtml" name="head">
+                <action addItem="css" file="css/bootstrap.css" params="" cond=""/>
+                <action addItem="css" file="css/bootstrap-theme.min.css"/>
                 <action addItem="css" file="css/dropzone.css"/>
                 <action addItem="css" file="css/jquery-te-1.4.0.css"/>
                 <action addItem="css" file="css/custom.css"/>
@@ -13,61 +13,60 @@
                 <action addItem="js" file="js/lib/jquery.cookie.js"/>
                 <action addItem="js" file="js/scripts.js"/>
             </block>
-            <block template="global/messages.phtml" name="global_messages"/>
-            <block template="global/header.phtml" name="header">
-                <block template="global/messages.phtml" name="messages"/>
+            <block  type="adminhtml_block/template"  template="global/messages.phtml" name="global_messages"/>
+            <block  type="adminhtml_block/template"  template="global/header.phtml" name="header">
+                <block  type="adminhtml_block/template"  template="global/messages.phtml" name="messages"/>
             </block>
-      <!--  <block template="global/notices.phtml" name="notices"/> -->
-            <block template="global/footer.phtml" name="footer"/>
-            <block template="admin/default.phtml" name="content"/>
+            <block  type="adminhtml_block/template"  template="global/notices.phtml" name="notices"/>
+            <block  type="adminhtml_block/template"  template="global/footer.phtml" name="footer"/>
+            <block  type="adminhtml_block/template"  template="dashboard/content.phtml" name="content"/>
         </block>
     </default>
-    <admin_login>
+    <dashboard_login>
         <reference name="root">
             <action setTemplate="login.phtml"/>
         </reference>
         <reference name="content">
-            <action setTemplate="admin/login.phtml"/>
+            <block type="block/template"  template="dashboard/login.phtml" name="dashboard_login"/>
         </reference>
-    </admin_login>
-    <admin_forget_password>
+    </dashboard_login>
+    <dashboard_forget_password>
         <reference name="root">
             <action setTemplate="login.phtml"/>
         </reference>
         <reference name="content">
-            <action setTemplate="admin/login.phtml"/>
+            <block type="block/template"  template="dashboard/login.phtml" name="dashboard_login"/>
         </reference>
-    </admin_forget_password>
-
-    <admin_dashboard>
+    </dashboard_forget_password>
+    <dashboard_index>
         <reference name="content">
-            <action setTemplate="admin/dashboard.phtml"/>
+            <action setTemplate="dashboard/dashboard.phtml"/>
+            <block type="block/template"  template="dashboard/dashboard.phtml" name="dashboard"/>
         </reference>
-    </admin_dashboard>
-    <admin_account>
+    </dashboard_index>
+    <dashboard_account>
         <reference name="content">
-            <action setTemplate="admin/account.phtml"/>
+            <block type="block/template"  template="dashboard/account.phtml" name="dashboard_account"/>
         </reference>
-    </admin_account>
-    <admin_users>
+    </dashboard_account>
+    <dashboard_users>
         <reference name="content">
-            <action setTemplate="admin/users.phtml"/>
+            <block type="block/template"  template="dashboard/users.phtml" name="dashboard_users"/>
         </reference>
-    </admin_users>
-    <admin_edit_users>
+    </dashboard_users>
+    <dashboard_edit_users>
         <reference name="content">
-            <action setTemplate="admin/edit_users.phtml"/>
+            <block type="block/template"  template="dashboard/edit_users.phtml" name="dashboard_edit_users"/>
         </reference>
-    </admin_edit_users>
-    <admin_system>
+    </dashboard_edit_users>
+    <dashboard_system>
         <reference name="content">
-            <action setTemplate="admin/system.phtml"/>
+            <block type="block/template"  template="dashboard/system.phtml" name="dashboard_system"/>
         </reference>
-    </admin_system>
-
+    </dashboard_system>
     <page_error404>
         <reference name="content">
-            <action setTemplate="global/error_404.phtml"/>
+            <block type="block/template"  template="global/error_404.phtml" name="error_404"/>
         </reference>
     </page_error404>
     <exception_error404>
@@ -75,23 +74,27 @@
             <action setTemplate="exception.phtml"/>
         </reference>
         <reference name="content">
-            <action setTemplate="global/error_404.phtml"/>
+            <block type="block/template"  template="global/error_404.phtml" name="error_404"/>
         </reference>
     </exception_error404>
-
     <cms_index>
         <reference name="content">
-            <action setTemplate="cms/index.phtml"/>
+            <block type="block/template"  template="cms/index.phtml" name="cms_index"/>
         </reference>
     </cms_index>
     <cms_editpage>
+
+        <reference name="head">
+            <action addItem="css" file="css/jquery-te-1.4.0.css"/>
+            <action addItem="js" file="js/lib/jquery-te-1.4.0.min.js"/>
+        </reference>
         <reference name="content">
-            <action setTemplate="cms/editpage.phtml"/>
+            <block type="block/template"  template="cms/editpage.phtml" name="cms_editpage"/>
         </reference>
     </cms_editpage>
     <cms_createpage>
         <reference name="content">
-            <action setTemplate="cms/createpage.phtml"/>
+            <block type="block/template"  template="cms/createpage.phtml" name="cms_createpage"/>
         </reference>
     </cms_createpage>
 </layout>

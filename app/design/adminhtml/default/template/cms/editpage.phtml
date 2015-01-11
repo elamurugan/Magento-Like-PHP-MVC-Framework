@@ -1,83 +1,108 @@
 <?php
 $current_page = $this->getData("cms_page_data");
 //debug($current_page);
+//$this->getNodeParam();
 ?>
 <div class="container">
     <h1>Edit CMS Page</h1>
 
     <div class="fr" style="margin-top: -30px;">
-        <a href="<?php echo $this->getBaseUrl(); ?>cms/index" style="margin-right: 10px;"><i class="glyphicon glyphicon-chevron-left"></i> Back to Pages List</a>
-        <a href="<?php echo $this->getBaseUrl(); ?>cms/createpage" class="btn btn-success" ><i class="glyphicon glyphicon-plus"></i> Create New Page</a>
+        <a href="<?php echo $this->getBaseUrl(); ?>cms/index" style="margin-right: 10px;"><i
+                class="glyphicon glyphicon-chevron-left"></i> Back to Pages List</a>
+        <a href="<?php echo $this->getBaseUrl(); ?>cms/createpage" class="btn btn-success"><i
+                class="glyphicon glyphicon-plus"></i> Create New Page</a>
     </div>
 
     <hr>
     <div class="row">
         <!-- edit form column -->
-        <div class="col-md-9 personal-info">
+        <div class="col-md-12 personal-info">
             <h3>Page Info</h3>
 
-            <form class="form-horizontal" role="form" action="<?php echo $this->getBaseUrl(); ?>cms/editpage" method="POST">
+            <form class="form-horizontal" role="form" action="<?php echo $this->getBaseUrl(); ?>cms/editpage"
+                  method="POST">
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Title:</label>
+
                     <div class="col-lg-8">
                         <input value="<?php echo $current_page['page_id']; ?>" name="page_id" type="hidden">
-                        <input class="form-control" value="<?php echo $current_page['title']; ?>" name="title" type="text">
+                        <input class="form-control" value="<?php echo $current_page['title']; ?>" name="title"
+                               type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="root_template" class="col-md-3 control-label">Root Template:</label>
+
                     <div class="col-md-8">
                         <select class="form-control" name="root_template">
                             <?php $templates = Utils::rootTemplates();
-                            foreach($templates as $key=>$template){ ?>
-                                <option value="<?php echo $key; ?>" <?php if($current_page['root_template'] == $key){echo 'selected';} ?>><?php echo $template; ?> </option>
+                            foreach ($templates as $key => $template) {
+                                ?>
+                                <option value="<?php echo $key; ?>" <?php if ($current_page['root_template'] == $key) {
+                                    echo 'selected';
+                                } ?>><?php echo $template; ?> </option>
                             <?php } ?>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">META Keywords:</label>
+
                     <div class="col-lg-8">
-                        <textarea class="form-control" name="meta_keywords" type="text"><?php echo $current_page['meta_keywords']; ?></textarea>
+                        <textarea class="form-control" name="meta_keywords"
+                                  type="text"><?php echo $current_page['meta_keywords']; ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">META Description:</label>
+
                     <div class="col-lg-8">
-                        <textarea class="form-control" name="meta_description" type="text"><?php echo $current_page['meta_description']; ?></textarea>
+                        <textarea class="form-control" name="meta_description"
+                                  type="text"><?php echo $current_page['meta_description']; ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Identifier:</label>
+
                     <div class="col-lg-8">
-                        <input class="form-control" value="<?php echo $current_page['identifier']; ?>" name="identifier" type="text">
+                        <input class="form-control" value="<?php echo $current_page['identifier']; ?>" name="identifier"
+                               type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Content Heading:</label>
+
                     <div class="col-lg-8">
-                        <input class="form-control" value="<?php echo $current_page['content_heading']; ?>" name="content_heading" type="text">
+                        <input class="form-control" value="<?php echo $current_page['content_heading']; ?>"
+                               name="content_heading" type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Content:</label>
+
                     <div class="col-lg-8">
-                        <textarea class="form-control" rows="10" name="content" type="text"><?php echo $current_page['content']; ?></textarea>
+                        <textarea class="form-control" id="content" rows="10" name="content"
+                                  type="text"><?php echo $current_page['content']; ?></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="is_active" class="col-md-3 control-label">Is Active:</label>
+
                     <div class="col-md-8">
                         <select class="form-control" name="is_active">
                             <?php $yes_nos = Utils::yesNoOptions();
-                            foreach($yes_nos as $key=>$yes_no){ ?>
-                                <option value="<?php echo $key; ?>" <?php if($current_page['is_active'] == $key){echo 'selected';}?> ><?php echo $yes_no; ?></option>
+                            foreach ($yes_nos as $key => $yes_no) {
+                                ?>
+                                <option value="<?php echo $key; ?>" <?php if ($current_page['is_active'] == $key) {
+                                    echo 'selected';
+                                } ?> ><?php echo $yes_no; ?></option>
                             <?php } ?>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
+
                     <div class="col-md-8">
                         <input class="btn btn-primary" value="Save Changes" type="submit">
                         <span></span>
@@ -89,3 +114,8 @@ $current_page = $this->getData("cms_page_data");
     </div>
 </div>
 <hr>
+<script>
+    jQuery(document).ready(function() {
+        jQuery("#content").jqte();
+    });
+</script>

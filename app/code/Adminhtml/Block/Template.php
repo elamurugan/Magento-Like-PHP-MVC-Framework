@@ -15,16 +15,10 @@
  * @category ${VENDOR}
  * @package ${VENDOR}_<module>
  */
-class Block_Template extends Block{
+class Adminhtml_Block_Template extends Block{
 
     public  function __construct()
     {
 
-    }
-
-    public  function getDataFromBlock()
-    {
-        $data = $this->model->getUsers();
-        return $data;
     }
 } 

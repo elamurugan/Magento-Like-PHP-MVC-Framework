@@ -16,6 +16,7 @@
  */
 class Model_Users extends Model
 {
+    protected  $dataSet = array();
 
     public function login($params)
     {

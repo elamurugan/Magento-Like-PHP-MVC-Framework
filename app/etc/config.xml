@@ -6,6 +6,30 @@
         <skin>skin</skin>
         <var_cache>var/cache/</var_cache>
     </path>
+    <adminhtml>
+        <layout>layout.xml</layout>
+        <default>
+            <theme>default</theme>
+            <module>dashboard</module>
+            <function>index</function>
+        </default>
+    </adminhtml>
+    <frontend>
+        <layout>layout.xml</layout>
+        <default>
+            <theme>default</theme>
+            <module>page</module>
+            <function>index</function>
+        </default>
+    </frontend>
+    <db>
+        <tables>
+            <config>config</config>
+            <users>users</users>
+            <cms_pages>cms_pages</cms_pages>
+            <url_rewrites>url_rewrites</url_rewrites>
+        </tables>
+    </db>
     <default>
         <area>frontend</area>
         <time_zone>Asia/Kolkata</time_zone>
@@ -17,29 +41,5 @@
         <site_title>Slim PHP MVC framework</site_title>
         <site_meta_keywords>Slim PHP MVC framework</site_meta_keywords>
         <site_meta_description>Slim PHP MVC framework</site_meta_description>
-        <frontend>
-            <theme>default</theme>
-            <module>page</module>
-            <function>index</function>
-        </frontend>
-        <adminhtml>
-            <theme>default</theme>
-            <module>dashboard</module>
-            <function>index</function>
-        </adminhtml>
     </default>
-    <adminhtml>
-        <layout>layout.xml</layout>
-    </adminhtml>
-    <frontend>
-        <layout>layout.xml</layout>
-    </frontend>
-    <db>
-        <tables>
-            <config>config</config>
-            <users>users</users>
-            <cms_pages>cms_pages</cms_pages>
-            <url_rewrites>url_rewrites</url_rewrites>
-        </tables>
-    </db>
 </config>

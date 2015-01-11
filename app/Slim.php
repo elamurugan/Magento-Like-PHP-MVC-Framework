@@ -23,28 +23,37 @@ class Slim
     public static function convertToClassPath($className, $_currentArea = '')
     {
         $classPath = explode("/", $className);
-        $classPath = array_map(function($word) { return ucfirst($word); }, $classPath);
+        $classPath = array_map(function ($word) {
+                return ucfirst($word);
+            },
+            $classPath
+        );
         $classPath = explode("_", implode("_", $classPath));
-        $classPath = array_map(function($word) { return ucfirst($word); }, $classPath);
+        $classPath = array_map(function ($word) {
+                return ucfirst($word);
+            },
+            $classPath
+        );
         return implode("_", $classPath);
     }
 
     public static function slimMVCAutoloader($className)
     {
         $_currentArea = ucfirst(Config::$__area);
+        $codePath = "code/";
+        if ($_currentArea == Config::ADMINHTML_AREA) {
+            $codePath .= "Adminhtml/";
+        }
         $classPath = self::getClassPath($className, $_currentArea);
-
         if (file_exists(_BASEDIR . "lib/" . $classPath . ".php")) {
             include_once _BASEDIR . "lib/" . $classPath . ".php";
-        } elseif (file_exists(_APPDIR . "code/Adminhtml/" . $classPath . ".php")) {
-            include_once _APPDIR . "code/Adminhtml/" . $classPath . ".php";
-        } elseif (file_exists(_APPDIR . "code/" . $classPath . ".php")) {
-            include_once _APPDIR . "code/" . $classPath . ".php";
+        } elseif (file_exists(_APPDIR . $codePath . $classPath . ".php")) {
+            include_once _APPDIR . $codePath . $classPath . ".php";
         } else {
-//            debug($className);
-            Slim::register("error_page_info","Class ".$className." Not found");
+            //            debug($className." => ".$classPath);
+            Slim::register("error_page_info", "Class " . $className . " Not found");
             include_once _BASEDIR . "lib/Error.php";
-            self::$_app->dispatchRouter("error","Error","printError","printError");
+            self::$_app->dispatchRouter("error", "Error", "printError", "printError");
         }
     }
 
@@ -96,26 +105,48 @@ class Slim
         return null;
     }
 
-    public static function createBlock($block = array(), $this = false)
+    /**
+     * @param array $block
+     * @param bool  $this
+     */
+    public static function createBlock($block = array(), $_inputData = array())
     {
-        if (file_exists($tempFile = $block['path'] . $block['template'])) {
-            $blockClass =  self::convertToClassPath($block['block_class']);
-            debug($blockClass);
-            $blockObj = new $blockClass($tempFile);
-            $_objects[$blockClass.'_block'] = $blockObj;
-            $blockObj->_templateFile = $tempFile;
-//            include_once($tempFile);
+        if(count($_inputData)){
+            extract($_inputData);
         }
+        if (file_exists($tempFile = $block['path'] . $block['template'])) {
+            $blockClass = self::convertToClassPath($block['block_class']);
+            $blockObj = new $blockClass();
+            $blockObj->model = Config::$model;
+            $blockObj->_templateFilePath = $tempFile;
+            $blockObj->_block = $block;
+            $_objects[$blockClass . '_block'] = $blockObj;
+            return $blockObj->render();
+        }
+        return "";
+    }
+
+
+    public static function renderBlock($block, $_inputData = array())
+    {
+        if(count($_inputData)){
+            extract($_inputData);
+        }
+        ob_start();
+        self::createBlock($block);
+        $_template_content = ob_get_contents();
+        ob_end_clean();
+        return $_template_content;
     }
 
     public static function getModel($class = "", $empty = false)
     {
-        if(!isset($_objects[$class.'_model']) || $empty){
+        if (!isset($_objects[$class . '_model']) || $empty) {
             $classFile = self::convertToClassPath($class);
             $obj = new $classFile();
-            $_objects[$class.'_model'] = $obj;
+            $_objects[$class . '_model'] = $obj;
         }
-        return $_objects[$class.'_model'];
+        return $_objects[$class . '_model'];
     }
 
     public function setErrorReporting()
@@ -138,12 +169,18 @@ class Slim
 
     public function removeMagicQuotes()
     {
-        $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        //        $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        //        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if (get_magic_quotes_gpc()) {
-            $_GET = stripSlashesDeep($_GET);
-            $_POST = stripSlashesDeep($_POST);
-            $_COOKIE = stripSlashesDeep($_COOKIE);
+            if (isset($_GET)) {
+                $_GET = stripSlashesDeep($_GET);
+            }
+            if (isset($_POST)) {
+                $_POST = stripSlashesDeep($_POST);
+            }
+            if (isset($_COOKIE)) {
+                $_COOKIE = stripSlashesDeep($_COOKIE);
+            }
         }
     }
 }

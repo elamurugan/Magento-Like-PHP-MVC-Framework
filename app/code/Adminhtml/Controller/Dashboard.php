@@ -36,12 +36,12 @@ class Adminhtml_Controller_Dashboard extends Controller
         if ($this->model->isAdminLoggedIn()) {
             $this->redirect('dashboard/index');
             return;
-        } elseif (isset($_POST)) {
+        } elseif (isset($_POST) && count($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->login($postParams);
             if ($response && count($response)) {
                 $this->setSession("admin", $response);
-                $this->setSession('suc_message', "Admin logged in successfully..!");
+                $this->setSession('suc_message', "Admin logged in successfully.");
                 $this->redirect('dashboard/index');
             } else {
                 $this->setSession('err_message', 'Wrong user/password');
@@ -64,9 +64,9 @@ class Adminhtml_Controller_Dashboard extends Controller
         if (!$this->model->isAdminLoggedIn()) {
             $this->redirect('dashboard/login');
             return;
-        } elseif (isset($_POST)) {
+        } elseif (isset($_POST) && count($_POST)) {
             $postParams = $this->getParamsByType('post');
-            $response = $this->model->update_user_data($postParams);
+            $response = $this->model->updateUser($postParams);
             $this->setSession($response['type'], $response['msg']);
             $this->redirect("dashboard/account");
             return;
@@ -90,9 +90,9 @@ class Adminhtml_Controller_Dashboard extends Controller
         if (!$this->model->isAdminLoggedIn()) {
             $this->redirect('dashboard/login');
             return;
-        } elseif (isset($_POST)) {
+        } elseif (isset($_POST) && count($_POST)) {
             $postParams = $this->getParamsByType('post');
-            $response = $this->model->update_user_data($postParams);
+            $response = $this->model->updateUser($postParams);
             $this->setSession($response['type'], $response['msg']);
             $this->redirect("dashboard/users");
             return;
@@ -108,9 +108,9 @@ class Adminhtml_Controller_Dashboard extends Controller
         if (!$this->model->isAdminLoggedIn()) {
             $this->redirect('dashboard/login');
             return;
-        } elseif (isset($_POST)) {
+        } elseif (isset($_POST) && count($_POST)) {
             $postParams = $this->getParamsByType('post');
-            $response = $this->model->update_config_data($postParams);
+            $response = $this->model->updateConfig($postParams);
             $this->setSession($response['type'], $response['msg']);
             $this->redirect("dashboard/system");
             return;
@@ -125,9 +125,9 @@ class Adminhtml_Controller_Dashboard extends Controller
         $this->clearCssJsCache($this->getParam('option'));
         $msgs['type'] = 'suc_message';
         if ($this->getParam('option') == 'adminhtml') {
-            $msgs['msg'] = 'ADMIN Cache Cleared Successfully..!';
+            $msgs['msg'] = 'ADMIN Cache Cleared Successfully.';
         } else {
-            $msgs['msg'] = 'FRONTEND Cache Cleared Successfully..!';
+            $msgs['msg'] = 'FRONTEND Cache Cleared Successfully.';
         }
         $this->setSession($msgs['type'], $msgs['msg']);
         $this->redirect('dashboard/system');

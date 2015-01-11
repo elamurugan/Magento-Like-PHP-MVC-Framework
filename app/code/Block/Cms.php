@@ -15,16 +15,21 @@
  * @category ${VENDOR}
  * @package ${VENDOR}_<module>
  */
-class Block_Template extends Block{
+class Block_Cms extends Block{
 
     public  function __construct()
     {
-
+        // to set template file from Block
+//        $tempFile = '';
+//        $this->_templateFile = $tempFile;
     }
 
-    public  function getDataFromBlock()
+    public  function getCmsContent()
     {
-        $data = $this->model->getUsers();
-        return $data;
+        $cmsPage = $this->model->_currentPage;
+        $content = $cmsPage->content;
+        $helper = new Helper();
+        $content = $helper->processCmsContent($content);
+        return $content;
     }
 } 

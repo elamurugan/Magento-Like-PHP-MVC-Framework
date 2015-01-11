@@ -35,9 +35,10 @@ class Adminhtml_Controller_Cms extends Controller
         if (!$this->model->isAdminLoggedIn()) {
             $this->redirect('dashboard/login');
             return;
-        } elseif (isset($_POST)) {
+        } elseif (isset($_POST) && count($_POST)) {
             $postParams = $this->getParamsByType('post');
-            $response = $this->model->update_cms_data($postParams);
+//            debug($postParams);die();
+            $response = $this->model->updateCmsPage($postParams);
             $this->setSession($response['type'], $response['msg']);
             $this->redirect("cms/index");
             return;
@@ -53,9 +54,9 @@ class Adminhtml_Controller_Cms extends Controller
         if (!$this->model->isAdminLoggedIn()) {
             $this->redirect('dashboard/login');
             return;
-        } elseif (isset($_POST)) {
+        } elseif (isset($_POST) && count($_POST)) {
             $postParams = $this->getParamsByType('post');
-            $response = $this->model->create_cms_page($postParams);
+            $response = $this->model->createCmsPage($postParams);
             $this->setSession($response['type'], $response['msg']);
             $this->redirect("cms/index");
             return;

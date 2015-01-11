@@ -16,14 +16,13 @@ Features of Slim-PHP-MVC
 	Multi theming Support
 	Separate Admin Handler
 	SEO Friendly URL's/URL rewrite Support
-	
+	Admin CMS Management/CMS page support
+	Admin Management for Site settings
+	Contact page built in
+	Cache generated for xml layouts,css,js
+
 	Installer script to setup in less than a min. - In progress
-	Admin CMS Management/CMS page support - In progress
-	Admin Management for Site settings - In progress
-	Contact page built in - In progress
-	User Location Finder built in - In progress
-	Cache generated for xml layouts,css,js - In progress
-	
+
 TODO
 ====
 	Workout XML[local.xml,config.xml,layout.xml] based structure -  Have to be optimized
@@ -31,24 +30,31 @@ TODO
 	Installer and check install status on every run -  Have to be optimized
 	Add URL rewrite  -  Have to be optimized
 	setData,getData to sent data to template  -  Have to be optimized
+    Admin System config - enable/disable [cache, compress js, css, html], smtp site settings  -  Have to be optimized
+    Admin My account page  -  Have to be optimized
+    Admin User Grid with paginations  -  Have to be optimized
+    Add block, getmodel logics. -  Have to be optimized
+    Admin CMS tables/pages with block/phtml file,variables including  -  Have to be optimized
 
-    Admin System config - enable/disable [cache, compress js, css, html], smtp site settings
-    Admin My account page
-    Admin User Grid with paginations
+    Getters, Setters for Model files
+    Install in separate file -> install.php with upgrade links -> Check for db upgrade
 
-	Install in separate file -> install.php with upgrade links -> Check for db upgrade
-	Separate Cache and workout fully functional caching solution
-	Admin CMS tables/pages with block/phtml file,variables including
-	Add commenting, documentation
-	Add Location Based messaging
-    Add block, getmodel,helper logics.
-    Config.xml to have smtp and other default settings and Load config form db table
+    Add commenting, documentation
+    Separate Cache and workout fully functional caching solution
 
 	Doc:
+	    Mysql:
+        Instead of this way
+            $qry = "SELECT * FROM `{$this->getTable("cms_pages")}` where page_id = '$id'";
+        We can use
+            $model->getCollection() -> $this->getCms_nameValue_string(), $this->getCmsNameValueString()
+            $model->insert()
+            $model->update()
+            $model->delete()
 
-	$qry = "SELECT * FROM `{$this->getTable("cms_pages")}` where page_id = '$id'";
+        CMS:
+        We can use like the following in editor to call php and variables from Helper
 
-	getCollection
-	insert
-	update
-	delete
+            {{block type="block/template"  template="page/cms_dyanamic.phtml" name="cms_dyanamic"}}
+
+            Welcome to {{var site_title}}

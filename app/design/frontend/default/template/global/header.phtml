@@ -1,15 +1,22 @@
 <?php
+
 //Template level Model access
 // $usersList = $this->model->getUsers();
 // debug($usersList);
+
 // Sample controller level Function call
 // $usersList = $this->_sampleControllerFunction();
+
+// Sample Block level Function call
+//$usersList = $this->getDataFromBlock();
+//debug($usersList);
+$user = $this->model->isUserLoggedIn();
 ?>
-<?php if ($this->model && ($user = $this->model->isUserLoggedIn())) { ?>
+<?php if ($user) { ?>
     <div role="navigation" class="header navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="<?php echo $this->getBaseUrl(); ?>" class="navbar-brand"><?php echo $this->siteTitle; ?></a>
+                <a href="<?php echo $this->getBaseUrl(); ?>" class="navbar-brand"><?php echo $this->getSiteTitle(); ?></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -30,7 +37,7 @@
     <div role="navigation" class="header navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="<?php echo $this->getBaseUrl(); ?>" class="navbar-brand"><?php echo $this->siteTitle; ?></a>
+                <a href="<?php echo $this->getBaseUrl(); ?>" class="navbar-brand"><?php echo $this->getSiteTitle(); ?></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">

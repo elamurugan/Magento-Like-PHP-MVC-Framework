@@ -16,6 +16,8 @@
  */
 class Adminhtml_Model_Cms extends Model
 {
+    protected  $dataSet = array();
+
 
     public function getCmsPages()
     {
@@ -28,7 +30,7 @@ class Adminhtml_Model_Cms extends Model
         return $this->getFirstItem();
     }
 
-    public function update_cms_data($params)
+    public function updateCmsPage($params)
     {
         extract($params);
         $data = $params;
@@ -40,12 +42,12 @@ class Adminhtml_Model_Cms extends Model
 
         $this->update("cms_pages", $data, array("page_id" => $page_id));
         $msgs['type'] = 'suc_message';
-        $msgs['msg'] = 'PAGE: "' . $title . '", Updated Successfully..!';
+        $msgs['msg'] = 'PAGE: "' . $title . '", Updated Successfully.';
 
         return $msgs;
     }
 
-    public function create_cms_page($params)
+    public function createCmsPage($params)
     {
         extract($params);
         $data = $params;
@@ -57,7 +59,7 @@ class Adminhtml_Model_Cms extends Model
 
         $this->insert("cms_pages", $data);
         $msgs['type'] = 'suc_message';
-        $msgs['msg'] = 'PAGE: "' . $title . '", Created Successfully..!';
+        $msgs['msg'] = 'PAGE: "' . $title . '", Created Successfully.';
 
         return $msgs;
     }

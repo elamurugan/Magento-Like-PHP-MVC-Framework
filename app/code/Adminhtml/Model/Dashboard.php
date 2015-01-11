@@ -16,6 +16,7 @@
  */
 class Adminhtml_Model_Dashboard extends Model
 {
+    protected  $dataSet = array();
 
     public function login($params)
     {
@@ -29,7 +30,7 @@ class Adminhtml_Model_Dashboard extends Model
         return false;
     }
 
-    public function update_user_data($params)
+    public function updateUser($params)
     {
         extract($params);
         $data = array("username" => $username, "name" => $name);
@@ -41,7 +42,7 @@ class Adminhtml_Model_Dashboard extends Model
                     $data["password"] = $password;
                 } else {
                     $msgs['type'] = 'err_message';
-                    $msgs['msg'] = 'Passwords Do Not Match..!';
+                    $msgs['msg'] = 'Passwords Do Not Match.';
                     return $msgs;
                 }
             } else {
@@ -56,14 +57,13 @@ class Adminhtml_Model_Dashboard extends Model
         }
         $this->update("users", $data, array("id" => $id));
         $msgs['type'] = 'suc_message';
-        $msgs['msg'] = 'USER ID: ' . $id . ', Profile Updated Successfully..!';
+        $msgs['msg'] = 'USER ID: ' . $id . ', Profile Updated Successfully.';
         return $msgs;
     }
 
-    public function update_config_data($params)
+    public function updateConfig($params)
     {
         $user_config = array_keys($this->getConfigData());
-
         foreach ($params as $key => $value) {
             if (in_array($key, $user_config)) {
                 $this->updateConfigVariable($key, $value);
@@ -71,10 +71,8 @@ class Adminhtml_Model_Dashboard extends Model
                 $this->createConfigVariable($key, $value);
             }
         }
-
         $msgs['type'] = 'suc_message';
-        $msgs['msg'] = 'Configuration Updated Successfully..!';
-
+        $msgs['msg'] = 'Configuration Updated Successfully.';
         return $msgs;
     }
 }

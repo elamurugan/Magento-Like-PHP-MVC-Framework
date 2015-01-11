@@ -22,7 +22,6 @@ class Controller_Page extends Controller
      */
     public function PageController()
     {
-
     }
 
     /**
@@ -47,7 +46,15 @@ class Controller_Page extends Controller
      */
     public function viewAction()
     {
-        $page = $this->model->getCmsPage($this->getParam("id"));
+        $id = $this->getParam("id");
+        // TODO
+//        $cms = Slim::getModel("model/cms");
+//        $cmsPage = $cms->getCmsPage($id);
+//        if ($cmsPage && $cmsPage->getId()) {
+//            debug($cmsPage->getTitle());
+//        }
+
+        $page = $this->model->getCmsPage($id);
         if (count($page)) {
             $this->setPageTitle($page->title);
             if ($page->root_template != '') {
@@ -61,7 +68,7 @@ class Controller_Page extends Controller
 
     public function contactAction()
     {
-        if (isset($_POST)) {
+        if (isset($_POST) && count($_POST)) {
             $params = $this->getParamsByType("post");
             $content = $this->renderTemplate("emails/contact.phtml", array('data' => $params));
             $helper = new Helper();

@@ -1,6 +1,7 @@
 <?php
 $current_page = $this->getData("cms_page_data");
 //debug($current_page);
+//$this->getNodeParam();
 ?>
 <div class="container">
     <h1>Edit CMS Page</h1>
@@ -15,7 +16,7 @@ $current_page = $this->getData("cms_page_data");
     <hr>
     <div class="row">
         <!-- edit form column -->
-        <div class="col-md-9 personal-info">
+        <div class="col-md-12 personal-info">
             <h3>Page Info</h3>
 
             <form class="form-horizontal" role="form" action="<?php echo $this->getBaseUrl(); ?>cms/editpage"
@@ -80,7 +81,7 @@ $current_page = $this->getData("cms_page_data");
                     <label class="col-lg-3 control-label">Content:</label>
 
                     <div class="col-lg-8">
-                        <textarea class="form-control" rows="10" name="content"
+                        <textarea class="form-control" id="content" rows="10" name="content"
                                   type="text"><?php echo $current_page['content']; ?></textarea>
                     </div>
                 </div>
@@ -113,3 +114,8 @@ $current_page = $this->getData("cms_page_data");
     </div>
 </div>
 <hr>
+<script>
+    jQuery(document).ready(function() {
+        jQuery("#content").jqte();
+    });
+</script>

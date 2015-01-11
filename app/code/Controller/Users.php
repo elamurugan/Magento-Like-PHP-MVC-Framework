@@ -36,7 +36,7 @@ class Controller_Users extends Controller
         if ($this->model->isUserLoggedIn()) {
             $this->redirect('users/profile');
             return;
-        } elseif (isset($_POST)) {
+        } elseif (isset($_POST) && count($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->login($postParams);
             if ($response && count($response)) {
@@ -56,7 +56,7 @@ class Controller_Users extends Controller
 
     public function createAction()
     {
-        if (isset($_POST)) {
+        if (isset($_POST) && count($_POST)) {
             $postParams = $this->getParamsByType('post');
             $response = $this->model->create($postParams);
             $this->setSession($response['type'], $response['msg']);

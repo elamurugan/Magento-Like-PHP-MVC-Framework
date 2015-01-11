@@ -1,8 +1,11 @@
 <?php
-
+if (($msg = $this->getData('msg')) == '' && ($msg = Slim::registry('error_page_info')) == '') {
+    $msg = 'Something Went wrong';
+}
 ?>
-    <title>Something Went wrong</title>
-    Something Went wrong, <a href="<?php echo $app->getBaseUrl(); ?>">Go Back</a>.
+<title>Something Went wrong</title>
 <?php
-Core::printAppFilesStack();
+echo $msg;
 ?>
+<br/>
+<a href="<?php echo _BASEURL; ?>">Go Back</a>.

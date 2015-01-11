@@ -19,3 +19,4 @@
 2015-01-05 11:52:15: DB sample_db1 cannot be used. Unknown database 'sample_db1'
 2015-01-05 11:52:26: DB sample_db1 cannot be used. Unknown database 'sample_db1'
 2015-01-05 11:52:28: Not connected : Access denied for user 'root'@'localhost' (using password: YES)
+2015-01-10 13:13:49: DB  cannot be used. No database selected Check with local.xml settings or reload db-install.sql from app/code/sql file

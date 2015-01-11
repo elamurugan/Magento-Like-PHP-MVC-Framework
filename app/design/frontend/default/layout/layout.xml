@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <layout>
     <default>
-        <block template="1column.phtml" name="root">
-            <block template="global/head.phtml" name="head">
+        <block type="block/template" template="1column.phtml" name="root">
+            <block type="block/template" template="global/head.phtml" name="head">
                 <action addItem="css" file="css/bootstrap.css" params="" cond=""/>
-				<action addItem="css" file="css/bootstrap-theme.min.css"/>
+                <action addItem="css" file="css/bootstrap-theme.min.css"/>
                 <action addItem="css" file="css/dropzone.css"/>
                 <action addItem="css" file="css/jquery-te-1.4.0.css"/>
                 <action addItem="css" file="css/custom.css"/>
@@ -13,24 +13,23 @@
                 <action addItem="js" file="js/lib/jquery.cookie.js"/>
                 <action addItem="js" file="js/scripts.js"/>
             </block>
-            <block template="global/header.phtml" name="header">
-                <block template="global/messages.phtml" name="messages"/>
+            <block type="block/template" template="global/header.phtml" name="header">
+                <block type="block/template"  template="global/messages.phtml" name="messages"/>
             </block>
-          <!--  <block template="global/notices.phtml" name="notices"/> -->
-            <block template="global/left.phtml" name="left"/>
-            <block template="global/right.phtml" name="right"/>
-            <block template="global/footer.phtml" name="footer"/>
-            <block template="page/default.phtml" name="content"/>
+            <block template="global/notices.phtml" name="notices"/>
+            <block type="block/template" template="global/left.phtml" name="left"/>
+            <block type="block/template" template="global/right.phtml" name="right"/>
+            <block type="block/template" template="global/footer.phtml" name="footer"/>
+            <block type="block/template" template="page/content.phtml" name="content"/>
         </block>
     </default>
     <page_index>
         <reference name="root">
             <action setTemplate="1column.phtml"/>
-            <block template="global/ga.phtml" name="ga" toHtml="true"/>
-            <block template="global/welcome_note.phtml" name="welcome_note" toHtml="true"/>
+            <block type="block/template" template="global/welcome_note.phtml" name="welcome_note" toHtml="true"/>
         </reference>
         <reference name="content">
-            <action setTemplate="page/index.phtml"/>
+            <block type="block/template"  template="page/home_default.phtml" name="home_default"/>
         </reference>
         <reference name="head">
             <action addItem="css" file="css/page.css" params="" cond=""/>
@@ -38,51 +37,47 @@
     </page_index>
     <page_view>
         <reference name="content">
-            <action setTemplate="page/view.phtml"/>
+            <block type="block/cms"  template="page/view.phtml" name="page_view"/>
         </reference>
     </page_view>
     <page_contact>
-        <reference name="root">
-            <action setTemplate="2column-left.phtml"/>
-        </reference>
         <reference name="content">
-            <action setTemplate="page/contact.phtml"/>
+            <block type="block/template"  template="page/contact.phtml" name="page_contact"/>
         </reference>
     </page_contact>
     <users_login>
         <reference name="content">
-            <action setTemplate="users/login.phtml"/>
+            <block type="block/template"  template="users/login.phtml" name="users_login"/>
         </reference>
     </users_login>
     <users_create>
         <reference name="content">
-            <action setTemplate="users/create.phtml"/>
+            <block type="block/template"  template="users/create.phtml" name="users_create"/>
         </reference>
     </users_create>
-	 <users_forget_password>
+    <users_forget_password>
         <reference name="content">
-            <action setTemplate="users/forget_password.phtml"/>
+            <block type="block/template"  template="users/forget_password.phtml" name="users_forget_password"/>
         </reference>
     </users_forget_password>
     <users_profile>
         <reference name="content">
-            <action setTemplate="users/profile.phtml"/>
+            <block type="block/template"  template="users/profile.phtml" name="users_profile"/>
         </reference>
     </users_profile>
-	<users_profileview>
+    <users_profileview>
         <reference name="content">
-            <action setTemplate="users/profileview.phtml"/>
+            <block type="block/template"  template="users/profileview.phtml" name="users_profileview"/>
         </reference>
     </users_profileview>
     <install_setup>
-        <reference name="root">
-            <action setTemplate="install.phtml"/>
+        <reference name="content">
+            <block type="block/template"  template="page/install.phtml" name="page_install"/>
         </reference>
     </install_setup>
-
     <page_error404>
         <reference name="content">
-            <action setTemplate="global/error_404.phtml"/>
+            <block type="block/template"  template="global/error_404.phtml" name="error_404"/>
         </reference>
     </page_error404>
     <exception_error404>
@@ -90,7 +85,7 @@
             <action setTemplate="exception.phtml"/>
         </reference>
         <reference name="content">
-            <action setTemplate="global/error_404.phtml"/>
+            <block type="block/template"  template="global/error_404.phtml" name="error_404"/>
         </reference>
     </exception_error404>
 </layout>

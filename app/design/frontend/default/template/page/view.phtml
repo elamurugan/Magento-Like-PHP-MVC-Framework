@@ -1,9 +1,6 @@
 <div class="page_width">
-    <div class='row'>
-        <p>CMS View File</p>
-    </div>
     <?php
     $cms_page = ($this->getData("cms_page"));
-    echo $cms_page['content'];
+    echo $this->getCmsContent();
     ?>
 </div>

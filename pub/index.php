@@ -24,6 +24,7 @@ function debug($data, $die = 0, $option = 1)
         die();
     }
 }
+include_once "../vendor/autoload.php";
 
 include_once "../lib/Config.php";
 include_once "../app/Slim.php";

@@ -38,8 +38,8 @@
         <js_compress>0</js_compress>
         <css_compress>0</css_compress>
         <html_compress>0</html_compress>
-        <site_title>Slim PHP MVC framework</site_title>
-        <site_meta_keywords>Slim PHP MVC framework</site_meta_keywords>
-        <site_meta_description>Slim PHP MVC framework</site_meta_description>
+        <site_title>PHP7MVC</site_title>
+        <site_meta_keywords>PHP7MVC</site_meta_keywords>
+        <site_meta_description>PHP7MVC</site_meta_description>
     </default>
 </config>

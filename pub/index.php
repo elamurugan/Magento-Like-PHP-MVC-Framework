@@ -5,7 +5,8 @@ define('DS', DIRECTORY_SEPARATOR);
 $subDirectory = (($subDirectory = dirname($_SERVER['PHP_SELF'])) != "/") ? $subDirectory . "/" : "/";
 define('_PROTOCOL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http");
 define('_BASEURL', _PROTOCOL . "://" . $_SERVER['HTTP_HOST'] . $subDirectory);
-define('_BASEDIR', dirname(__FILE__) . DS);
+define('_PUBDIR', dirname(__FILE__) . DS);
+define('_BASEDIR', dirname(_PUBDIR) . DS);
 define('_APPDIR', _BASEDIR . "app" . DS);
 
 define('_DEBUG_MODE', true);
@@ -24,7 +25,7 @@ function debug($data, $die = 0, $option = 1)
     }
 }
 
-include_once "lib/Config.php";
-include_once "app/Slim.php";
+include_once "../lib/Config.php";
+include_once "../app/Slim.php";
 $slimApp = new Slim();
 $slimApp->run();

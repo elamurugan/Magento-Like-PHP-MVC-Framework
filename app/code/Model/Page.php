@@ -16,8 +16,8 @@
  */
 class Model_Page extends Model
 {
-    public    $_currentPage = false;
-    protected $dataSet      = array();
+    public $_currentPage = false;
+    protected $dataSet = array();
 
     public function getUsers()
     {

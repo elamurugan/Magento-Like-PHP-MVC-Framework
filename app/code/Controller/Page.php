@@ -55,7 +55,7 @@ class Controller_Page extends Controller
 //        }
 
         $page = $this->model->getCmsPage($id);
-        if (count($page)) {
+        if ($page && count((array)$page)) {
             $this->setPageTitle($page->title);
             if ($page->root_template != '') {
                 $this->updateTemplate("root", $page->root_template);
